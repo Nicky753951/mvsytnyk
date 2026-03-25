@@ -3,18 +3,11 @@ import { Church, PartyPopper, MapPin, Clock } from "lucide-react";
 
 const details = [
   {
-    icon: Church,
-    title: "Церемонія",
-    time: "14:00",
-    place: "Храм Святого Миколая",
-    address: "вул. Соборна, 12, Київ",
-  },
-  {
     icon: PartyPopper,
-    title: "Банкет",
-    time: "16:00",
-    place: "Ресторан «Золотий Дуб»",
-    address: "вул. Паркова, 45, Київ",
+    title: "Виїзна церемонія і Банкет",
+    time: "14:00",
+    place: "Ресторан «Софіївський посад»",
+    address: "Київська область, с. Софіївська Борщагівка, вул. Київська, 81/2",
   },
 ];
 
