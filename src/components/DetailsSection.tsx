@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Church, PartyPopper, MapPin, Clock } from "lucide-react";
+import { PartyPopper, MapPin, Clock } from "lucide-react";
 
 const details = [
   {
