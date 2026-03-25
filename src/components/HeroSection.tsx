@@ -63,7 +63,7 @@ const HeroSection = () => {
         >
           <div className="w-16 h-px bg-accent mx-auto my-8" />
           <p className="wedding-subheading text-primary-foreground opacity-80 text-base md:text-lg">
-            15 серпня 2026
+            5 вересня 2026
           </p>
         </motion.div>
 
