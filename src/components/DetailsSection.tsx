@@ -1,20 +1,13 @@
 import { motion } from "framer-motion";
-import { Church, PartyPopper, MapPin, Clock } from "lucide-react";
+import { PartyPopper, MapPin, Clock } from "lucide-react";
 
 const details = [
   {
-    icon: Church,
-    title: "Церемонія",
-    time: "14:00",
-    place: "Храм Святого Миколая",
-    address: "вул. Соборна, 12, Київ",
-  },
-  {
     icon: PartyPopper,
-    title: "Банкет",
-    time: "16:00",
-    place: "Ресторан «Золотий Дуб»",
-    address: "вул. Паркова, 45, Київ",
+    title: "Виїзна церемонія і Банкет",
+    time: "14:00",
+    place: "Ресторан «Софіївський посад»",
+    address: "Київська область, с. Софіївська Борщагівка, вул. Київська, 81/2",
   },
 ];
 
@@ -32,7 +25,7 @@ const DetailsSection = () => {
         <div className="gold-divider" />
       </motion.div>
 
-      <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 mt-16">
+      <div className="max-w-xl mx-auto mt-16">
         {details.map((d, i) => (
           <motion.div
             key={i}
