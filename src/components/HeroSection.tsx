@@ -1,0 +1,97 @@
+import { motion } from "framer-motion";
+import coupleHero from "@/assets/couple-hero.jpg";
+import floralTop from "@/assets/floral-top.png";
+
+const HeroSection = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src={coupleHero}
+          alt="Весільне фото"
+          className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 bg-foreground/40" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <p className="wedding-subheading text-primary-foreground mb-6 opacity-90">
+            Запрошуємо на наше весілля
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.6 }}
+        >
+          <img
+            src={floralTop}
+            alt=""
+            className="w-48 md:w-64 mx-auto mb-6 opacity-90"
+            width={1200}
+            height={600}
+          />
+        </motion.div>
+
+        <motion.h1
+          className="wedding-heading text-primary-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9 }}
+        >
+          Олександр
+          <span className="block font-display italic text-3xl md:text-4xl lg:text-5xl my-3 font-light opacity-80">
+            та
+          </span>
+          Вікторія
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.4 }}
+        >
+          <div className="w-16 h-px bg-accent mx-auto my-8" />
+          <p className="wedding-subheading text-primary-foreground opacity-80 text-base md:text-lg">
+            15 серпня 2026
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.8 }}
+          className="mt-12"
+        >
+          <a
+            href="#rsvp"
+            className="inline-block border border-primary-foreground/50 text-primary-foreground px-10 py-3 wedding-subheading text-xs hover:bg-primary-foreground/10 transition-colors duration-300"
+          >
+            Підтвердити присутність
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+      >
+        <div className="w-px h-12 bg-primary-foreground/40" />
+      </motion.div>
+    </section>
+  );
+};
+
+export default HeroSection;
