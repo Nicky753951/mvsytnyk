@@ -25,7 +25,7 @@ const DetailsSection = () => {
         <div className="gold-divider" />
       </motion.div>
 
-      <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 mt-16">
+      <div className="max-w-xl mx-auto mt-16">
         {details.map((d, i) => (
           <motion.div
             key={i}
