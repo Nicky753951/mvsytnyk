@@ -69,14 +69,6 @@ const HeroSection = () => {
 
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <div className="w-px h-12 bg-primary-foreground/40" />
-      </motion.div>
     </section>
   );
 };
