@@ -10,7 +10,7 @@ const HeroSection = () => {
         <img
           src={coupleHero}
           alt="Весільне фото"
-          className="w-full h-full object-cover object-[center_25%]"
+          className="w-full h-full object-cover object-[center_15%]"
           width={1920}
           height={1080}
         />
