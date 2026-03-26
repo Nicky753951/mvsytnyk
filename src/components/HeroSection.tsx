@@ -61,7 +61,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
         >
-          <div className="w-16 h-px bg-accent mx-auto my-8" />
+          
           <p className="wedding-subheading text-primary-foreground opacity-80 text-base md:text-lg">
             5 вересня 2026
           </p>
