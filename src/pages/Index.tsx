@@ -12,7 +12,7 @@ const Index = () => {
       <CountdownSection />
       <StorySection />
       <DetailsSection />
-      <RsvpSection />
+      
       <FooterSection />
     </main>
   );

@@ -67,19 +67,6 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="mt-12"
-        >
-          <a
-            href="#rsvp"
-            className="inline-block border border-primary-foreground/50 text-primary-foreground px-10 py-3 wedding-subheading text-xs hover:bg-primary-foreground/10 transition-colors duration-300"
-          >
-            Підтвердити присутність
-          </a>
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}
