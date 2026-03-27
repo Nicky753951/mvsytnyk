@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import coupleHero from "@/assets/couple-hero.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
@@ -7,17 +7,17 @@ const HeroSection = () => {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={coupleHero}
-          alt="Весільне фото"
-          className="w-full h-full object-cover object-[center_30%]"
+          src={heroBg}
+          alt="Весільний фон"
+          className="w-full h-full object-cover"
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-foreground/40" />
+        <div className="absolute inset-0 bg-foreground/30" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 mt-[40vh]">
+      <div className="relative z-10 text-center px-6">
 
         <motion.h1
           className="wedding-heading text-primary-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
@@ -37,7 +37,6 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
         >
-          
           <p className="wedding-subheading text-primary-foreground opacity-80 text-base md:text-lg">
             5 вересня 2026
           </p>
