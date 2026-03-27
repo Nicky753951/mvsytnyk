@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import coupleHero from "@/assets/couple-hero.jpg";
-import floralTop from "@/assets/floral-top.png";
 
 const HeroSection = () => {
   return (
