@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import coupleHero from "@/assets/couple-hero.jpg";
-import floralTop from "@/assets/floral-top.png";
 
 const HeroSection = () => {
   return (
@@ -19,29 +18,6 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <p className="wedding-subheading text-primary-foreground mb-6 opacity-90">
-            Запрошуємо на наше весілля
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.6 }}
-        >
-          <img
-            src={floralTop}
-            alt=""
-            className="w-48 md:w-64 mx-auto mb-6 opacity-90"
-            width={1200}
-            height={600}
-          />
-        </motion.div>
 
         <motion.h1
           className="wedding-heading text-primary-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
