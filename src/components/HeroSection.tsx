@@ -17,7 +17,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6">
+      <div className="relative z-10 text-center px-6 mt-[40vh]">
 
         <motion.h1
           className="wedding-heading text-primary-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
