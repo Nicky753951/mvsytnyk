@@ -13,14 +13,14 @@ const HeroSection = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-background/20" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 text-center px-6">
 
         <motion.h1
-          className="wedding-heading text-primary-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
+          className="wedding-heading text-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
@@ -37,7 +37,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
         >
-          <p className="wedding-subheading text-primary-foreground opacity-80 text-base md:text-lg">
+          <p className="wedding-subheading text-muted-foreground text-base md:text-lg">
             5 вересня 2026
           </p>
         </motion.div>
