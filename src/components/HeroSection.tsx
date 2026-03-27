@@ -13,7 +13,7 @@ const HeroSection = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-background/20" />
       </div>
 
       {/* Content */}
