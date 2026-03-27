@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Wine, Palette } from "lucide-react";
+import { Wine, Palette, Banknote } from "lucide-react";
 
 const wishes = [
   {
@@ -13,7 +13,7 @@ const wishes = [
     description: "Наше свято у кольорах — білий та чорний 🤍🖤",
   },
    {
-    icon: Palette,
+    icon: Banknote,
     title: "Подарунки",
     description: "Ми не хочемо обтяжувати Вас вибором
 подарунків, тому будемо вдячні за внесок у бюджет нашої молодої родини",
@@ -34,7 +34,7 @@ const WishesSection = () => {
         <div className="w-24 h-px bg-accent mx-auto my-8" />
       </motion.div>
 
-      <div className="max-w-2xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
         {wishes.map((w, i) => (
           <motion.div
             key={i}
