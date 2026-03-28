@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 
 const WEDDING_DATE = new Date("2026-09-05T14:00:00");
 
+// Спільний клас для однакового стилю тексту
+const TEXT_STYLE = "text-xl md:text-2xl mb-10 max-w-xl mx-auto leading-relaxed italic text-[#6b5e5a]";
+
 const WeddingCalendar = () => {
   // Вересень 2026 починається з вівторка
   const days = [
@@ -87,9 +90,9 @@ const CountdownSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {/* Текст запрошення: Cormorant Garamond, трохи більший розмір */}
+        {/* Перший текст (запрошення) */}
         <h2 
-          className="text-xl md:text-2xl mb-10 max-w-xl mx-auto leading-relaxed italic text-[#6b5e5a]"
+          className={TEXT_STYLE}
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Щиро запрошуємо вас на свято, присвячене створенню нашої сім'ї, яке відбудеться:
@@ -97,22 +100,25 @@ const CountdownSection = () => {
 
         <WeddingCalendar />
 
-        <div className="mt-16">
-          <p className="text-[#9e8a84] uppercase tracking-[0.3em] text-[12px] mb-8">
-            До нашого свята залишилось
-          </p>
-          <div className="flex justify-center gap-8 md:gap-14">
-            {items.map((item) => (
-              <div key={item.label} className="text-center">
-                <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
-                  {item.value}
-                </span>
-                <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
+        {/* Другий текст (таймер) з таким же стилем */}
+        <p 
+          className={TEXT_STYLE + " mt-16"} // Додано mt-16 для відступу після календаря
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          До нашого свята залишилось
+        </p>
+        
+        <div className="flex justify-center gap-8 md:gap-14">
+          {items.map((item) => (
+            <div key={item.label} className="text-center">
+              <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
+                {item.value}
+              </span>
+              <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
+                {item.label}
+              </p>
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>
