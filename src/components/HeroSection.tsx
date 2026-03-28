@@ -1,1 +1,1 @@
-<button onclick="window.open('your-link-here', '_blank')">Підтвердити присутність</button>
+<button onclick="window.open('https://www.google.com/, '_blank')">Підтвердити присутність</button>
