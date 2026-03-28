@@ -45,7 +45,7 @@ const GallerySection = () => {
                     loading="lazy"
                     width={800}
                     height={1024}
-                    className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+                    className="w-full aspect-square object-cover"
                   />
                 </div>
               </CarouselItem>
