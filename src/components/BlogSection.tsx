@@ -7,12 +7,12 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
 
 const posts = [
-  { src: gallery1, caption: "Наша перша зустріч — момент, який змінив усе" },
-  { src: gallery2, caption: "Разом крізь усі пригоди життя" },
+  { src: gallery3, caption: "А ми вже придбали весільні обручки" },
+  { src: gallery4, caption: "Провели зустріч із ведучою весілля" },
 ];
 
 const BlogSection = () => {
@@ -24,7 +24,7 @@ const BlogSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <p className="wedding-subheading text-muted-foreground mb-2">Наші спогади</p>
+        <p className="wedding-subheading text-muted-foreground mb-2">Підготовка до весілля</p>
         <h2 className="wedding-heading text-foreground mb-4">Блог</h2>
         <div className="gold-divider" />
       </motion.div>
