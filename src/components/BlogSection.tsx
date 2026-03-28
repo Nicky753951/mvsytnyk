@@ -50,7 +50,10 @@ const BlogSection = () => {
                     className="w-full aspect-square object-cover"
                   />
                 </div>
-                <p className="wedding-body text-muted-foreground mt-4 px-2 italic">
+                <p className="text-xs tracking-widest uppercase text-accent mt-4">
+                  {post.date}
+                </p>
+                <p className="wedding-body text-muted-foreground mt-1 px-2 italic">
                   {post.caption}
                 </p>
               </CarouselItem>
