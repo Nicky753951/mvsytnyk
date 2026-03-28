@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const WEDDING_DATE = new Date("2026-09-05T14:00:00");
 
 // Оновлений стиль: розмір 18px, без курсиву (not-italic)
-const TEXT_STYLE = "text-[18px] mb-10 max-w-xl mx-auto leading-relaxed not-italic text-[#6b5e5a]";
+const TEXT_STYLE = "text-[22px] mb-10 max-w-xl mx-auto leading-relaxed not-italic text-[#6b5e5a]";
 
 const WeddingCalendar = () => {
   const days = [
