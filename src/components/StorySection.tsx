@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
-import Counter from "./Counter";
 
 const events = [
   { date: "Вересень 2017", title: "Перша зустріч", text: "Ми зустрілися на весіллі Ігоря та Віки (наших теперішніх кумів)." },
@@ -47,9 +46,6 @@ const StorySection = () => {
           </motion.div>
         ))}
       </div>
-
-      {/* Каунтер всередині секції */}
-      <Counter />
     </section>
   );
 };
