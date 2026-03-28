@@ -1,3 +1,1 @@
-# Welcome to your Lovable project
-
-TODO: Document your project here
+# Вітаємо на сайті наречених Миколи та Вікторії
