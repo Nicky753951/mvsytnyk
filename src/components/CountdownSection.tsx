@@ -105,7 +105,7 @@ const CountdownSection = () => {
           className={TEXT_STYLE + " mt-16"} // Додано mt-16 для відступу після календаря
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          До нашого свята залишилось
+          До нашого свята залишилось:
         </p>
         
         <div className="flex justify-center gap-8 md:gap-14">
