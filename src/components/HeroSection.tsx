@@ -42,7 +42,7 @@ const HeroSection = () => {
 
           {/* Завжди підсвічена кнопка підтвердження */}
           <motion.a
-            href="https://tвій-сайт-або-форма.com" // Заміни на потрібне посилання
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdXoBLxyQdhKxSQM3B_I_G35uNGG2QRxtOMuNm4epk75Jnh0Q/viewform?usp=dialog" // Заміни на потрібне посилання
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }} // Ми залишили легке збільшення при наведенні
