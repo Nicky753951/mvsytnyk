@@ -11,8 +11,8 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 
 const posts = [
-  { src: gallery3, caption: "А ми вже придбали весільні обручки" },
-  { src: gallery4, caption: "Провели зустріч із ведучою весілля" },
+  { src: gallery3, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
+  { src: gallery4, date: "22 березня 2026", caption: "Провели зустріч із ведучою весілля" },
 ];
 
 const BlogSection = () => {
@@ -50,7 +50,10 @@ const BlogSection = () => {
                     className="w-full aspect-square object-cover"
                   />
                 </div>
-                <p className="wedding-body text-muted-foreground mt-4 px-2 italic">
+                <p className="text-xs tracking-widest uppercase text-accent mt-4">
+                  {post.date}
+                </p>
+                <p className="wedding-body text-muted-foreground mt-1 px-2 italic">
                   {post.caption}
                 </p>
               </CarouselItem>
