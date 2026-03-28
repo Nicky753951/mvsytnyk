@@ -98,7 +98,7 @@ const CountdownSection = () => {
         <WeddingCalendar />
 
         <div className="mt-16">
-          <p className="text-[#9e8a84] uppercase tracking-[0.3em] text-[10px] mb-8">
+          <p className="text-[#9e8a84] uppercase tracking-[0.3em] text-[12px] mb-8">
             До нашого свята залишилось
           </p>
           <div className="flex justify-center gap-8 md:gap-14">
@@ -107,7 +107,7 @@ const CountdownSection = () => {
                 <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
                   {item.value}
                 </span>
-                <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
+                <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
                   {item.label}
                 </p>
               </div>
