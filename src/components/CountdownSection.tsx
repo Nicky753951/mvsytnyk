@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 const WEDDING_DATE = new Date("2026-09-05T14:00:00");
 
 const WeddingCalendar = () => {
-  // Генерація днів для вересня 2026 (починається з вівторка - 01.09.2026)
-  // Пн Вт Ср Чт Пт Сб Нд
-  //     1  2  3  4  5  6
+  // Вересень 2026 починається з вівторка
   const days = [
     null, 1, 2, 3, 4, 5, 6, 
     7, 8, 9, 10, 11, 12, 13, 
@@ -18,14 +16,15 @@ const WeddingCalendar = () => {
   const weekDays = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "НД"];
 
   return (
-    <div className="max-w-xs mx-auto my-12 font-serif text-[#8a8a8a]">
-      <h3 className="text-center uppercase tracking-widest text-xl mb-8 text-[#a5b4fc]">
+    <div className="max-w-xs mx-auto my-10 font-serif text-[#9e8a84]">
+      {/* Заголовок календаря ніжно-рожевим */}
+      <h3 className="text-center uppercase tracking-[0.2em] text-2xl mb-6 text-[#eeb9b9]">
         Вересень 2026
       </h3>
       
-      <div className="grid grid-cols-7 gap-y-4 text-center items-center">
+      <div className="grid grid-cols-7 gap-y-3 text-center items-center">
         {weekDays.map((day) => (
-          <span key={day} className="text-xs font-sans font-semibold mb-2">
+          <span key={day} className="text-[10px] tracking-widest font-sans opacity-70 mb-2">
             {day}
           </span>
         ))}
@@ -34,18 +33,18 @@ const WeddingCalendar = () => {
           <div key={index} className="relative h-10 flex items-center justify-center text-lg">
             {day === 5 ? (
               <div className="relative z-10 flex items-center justify-center w-full h-full">
-                {/* SVG Сердечко */}
+                {/* Ніжно-рожеве сердечко */}
                 <svg
-                  className="absolute w-12 h-12 text-[#a5b4fc] opacity-80"
+                  className="absolute w-11 h-11 text-[#f7d7d7]"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </svg>
-                <span className="relative z-20 text-white font-bold">{day}</span>
+                <span className="relative z-20 text-[#9e8a84] font-medium">{day}</span>
               </div>
             ) : (
-              <span className={day ? "" : "invisible"}>{day}</span>
+              <span className={day ? "opacity-80" : "invisible"}>{day}</span>
             )}
           </div>
         ))}
@@ -81,34 +80,39 @@ const CountdownSection = () => {
   ];
 
   return (
-    <section className="wedding-section bg-card text-center py-16 px-4">
+    <section className="wedding-section bg-[#fffcf9] text-center py-20 px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-2xl md:text-3xl font-serif mb-6 max-w-2xl mx-auto leading-relaxed text-foreground">
+        {/* Текст запрошення: Cormorant Garamond, трохи більший розмір */}
+        <h2 
+          className="text-xl md:text-2xl mb-10 max-w-xl mx-auto leading-relaxed italic text-[#6b5e5a]"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
           Щиро запрошуємо вас на свято, присвячене створенню нашої сім'ї, яке відбудеться:
         </h2>
 
         <WeddingCalendar />
 
-        <p className="wedding-subheading text-muted-foreground mb-6 mt-12">
-          До нашого свята залишилось:
-        </p>
-        
-        <div className="flex justify-center gap-6 md:gap-12">
-          {items.map((item) => (
-            <div key={item.label} className="text-center">
-              <span className="font-display text-4xl md:text-6xl text-foreground">
-                {item.value}
-              </span>
-              <p className="font-sans text-xs tracking-widest uppercase text-muted-foreground mt-2">
-                {item.label}
-              </p>
-            </div>
-          ))}
+        <div className="mt-16">
+          <p className="text-[#9e8a84] uppercase tracking-[0.3em] text-[10px] mb-8">
+            До нашого свята залишилось
+          </p>
+          <div className="flex justify-center gap-8 md:gap-14">
+            {items.map((item) => (
+              <div key={item.label} className="text-center">
+                <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
+                  {item.value}
+                </span>
+                <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
