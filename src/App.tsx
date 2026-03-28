@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const queryClient = new QueryClient();
 
