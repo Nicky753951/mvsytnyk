@@ -107,7 +107,7 @@ const CountdownSection = () => {
                 <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
                   {item.value}
                 </span>
-                <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
+                <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
                   {item.label}
                 </p>
               </div>
