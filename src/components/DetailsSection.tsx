@@ -7,7 +7,7 @@ const details = [
     title: "Виїзна церемонія і Банкет",
     time: "14:00",
     place: "Ресторан «Софіївський посад»",
-    link: "https://sofiyivsky-posad.com.ua/",
+    link: "https://www.posad-hotel.com.ua/restaurant/",
     address: "Київська область, с. Софіївська Борщагівка, вул. Київська, 81/2",
   },
 ];
