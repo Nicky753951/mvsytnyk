@@ -40,14 +40,14 @@ const HeroSection = () => {
             5 вересня 2026
           </p>
 
-          {/* Кнопка підтвердження */}
+          {/* Завжди підсвічена кнопка підтвердження */}
           <motion.a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdXoBLxyQdhKxSQM3B_I_G35uNGG2QRxtOMuNm4epk75Jnh0Q/viewform?usp=publish-editor" // Заміни на потрібне посилання
+            href="https://tвій-сайт-або-форма.com" // Заміни на потрібне посилання
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05 }} // Ми залишили легке збільшення при наведенні
             whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-3 border border-foreground text-foreground bg-transparent hover:bg-foreground hover:text-background transition-colors duration-300 rounded-full text-sm md:text-base tracking-widest uppercase"
+            className="inline-block px-10 py-3 border border-foreground bg-foreground text-background transition-all duration-300 rounded-full text-sm md:text-base tracking-widest uppercase font-semibold shadow-lg hover:shadow-xl"
           >
             Підтвердити участь
           </motion.a>
