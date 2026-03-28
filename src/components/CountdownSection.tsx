@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 
 const WEDDING_DATE = new Date("2026-09-05T14:00:00");
 
-// Спільний клас для однакового стилю тексту
-const TEXT_STYLE = "text-xl md:text-2xl mb-10 max-w-xl mx-auto leading-relaxed italic text-[#6b5e5a]";
+// Оновлений стиль: розмір 18px, без курсиву (not-italic)
+const TEXT_STYLE = "text-[18px] mb-10 max-w-xl mx-auto leading-relaxed not-italic text-[#6b5e5a]";
 
 const WeddingCalendar = () => {
-  // Вересень 2026 починається з вівторка
   const days = [
     null, 1, 2, 3, 4, 5, 6, 
     7, 8, 9, 10, 11, 12, 13, 
@@ -20,7 +19,6 @@ const WeddingCalendar = () => {
 
   return (
     <div className="max-w-xs mx-auto my-10 font-serif text-[#9e8a84]">
-      {/* Заголовок календаря ніжно-рожевим */}
       <h3 className="text-center uppercase tracking-[0.2em] text-2xl mb-6 text-[#eeb9b9]">
         Вересень 2026
       </h3>
@@ -36,7 +34,6 @@ const WeddingCalendar = () => {
           <div key={index} className="relative h-10 flex items-center justify-center text-lg">
             {day === 5 ? (
               <div className="relative z-10 flex items-center justify-center w-full h-full">
-                {/* Ніжно-рожеве сердечко */}
                 <svg
                   className="absolute w-11 h-11 text-[#f7d7d7]"
                   viewBox="0 0 24 24"
@@ -90,7 +87,6 @@ const CountdownSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {/* Перший текст (запрошення) */}
         <h2 
           className={TEXT_STYLE}
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -100,12 +96,11 @@ const CountdownSection = () => {
 
         <WeddingCalendar />
 
-        {/* Другий текст (таймер) з таким же стилем */}
         <p 
-          className={TEXT_STYLE + " mt-16"} // Додано mt-16 для відступу після календаря
+          className={TEXT_STYLE + " mt-16"} 
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          До нашого свята залишилось:
+          До нашого свята залишилось
         </p>
         
         <div className="flex justify-center gap-8 md:gap-14">
