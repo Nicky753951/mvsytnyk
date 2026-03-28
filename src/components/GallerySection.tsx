@@ -28,7 +28,7 @@ const GallerySection = () => {
       </motion.div>
 
       <motion.div
-        className="max-w-3xl mx-auto mt-12 px-12"
+        className="max-w-3xl mx-auto mt-8 md:mt-12 px-4 md:px-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -45,14 +45,20 @@ const GallerySection = () => {
                     loading="lazy"
                     width={800}
                     height={1024}
-                    className="w-full h-[500px] object-cover"
+                    className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
                   />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <div className="flex items-center justify-center gap-4 mt-4 md:hidden">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
+          <div className="hidden md:block">
+            <CarouselPrevious />
+            <CarouselNext />
+          </div>
         </Carousel>
       </motion.div>
     </section>
