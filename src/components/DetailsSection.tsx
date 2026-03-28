@@ -41,7 +41,14 @@ const DetailsSection = () => {
               <Clock className="w-4 h-4" />
               <span className="font-sans text-sm">{d.time}</span>
             </div>
-            <p className="wedding-body text-foreground font-medium">{d.place}</p>
+            <a
+              href={d.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wedding-body text-foreground font-medium underline decoration-accent underline-offset-4 hover:text-accent transition-colors"
+            >
+              {d.place}
+            </a>
             <div className="flex items-center justify-center gap-2 text-muted-foreground mt-2">
               <MapPin className="w-4 h-4" />
               <span className="font-body text-base">{d.address}</span>
