@@ -23,7 +23,7 @@ const StorySection = () => {
         <div className="gold-divider" />
       </motion.div>
 
-      <div className="max-w-2xl mx-auto mt-16 relative">
+      <div className="max-w-2xl mx-auto mt-16 relative mb-20">
         {/* Timeline line */}
         <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-border hidden md:block" />
 
@@ -47,9 +47,10 @@ const StorySection = () => {
           </motion.div>
         ))}
       </div>
-    </section>
-    {/* Каунтер в кінці секції */}
+
+      {/* Каунтер всередині секції */}
       <CountdownSection />
+    </section>
   );
 };
 
