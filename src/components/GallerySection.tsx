@@ -8,9 +8,11 @@ import {
 } from "@/components/ui/carousel";
 
 import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
 
 const photos = [
   { src: gallery1, alt: "Наше фото 1" },
+  { src: gallery2, alt: "Наше фото 2" },
 ];
 
 const GallerySection = () => {
