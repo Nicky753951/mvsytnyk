@@ -13,8 +13,8 @@ const Index = () => {
       <HeroSection />
       <CountdownSection />
       <StorySection />
-      <GallerySection />
       <DetailsSection />
+      <GallerySection />
       <WishesSection />
       <FooterSection />
     </main>
