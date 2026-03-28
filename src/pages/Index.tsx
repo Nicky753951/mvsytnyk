@@ -2,7 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import CountdownSection from "@/components/CountdownSection";
 import StorySection from "@/components/StorySection";
 import DetailsSection from "@/components/DetailsSection";
-import DetailsSection from "@/components/GallerySection";
+import GallerySection from "@/components/GallerySection";
 
 import WishesSection from "@/components/WishesSection";
 import FooterSection from "@/components/FooterSection";
