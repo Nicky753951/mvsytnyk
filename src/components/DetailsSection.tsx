@@ -37,10 +37,6 @@ const DetailsSection = () => {
           >
             <d.icon className="w-10 h-10 text-accent mx-auto mb-6" strokeWidth={1.2} />
             <h3 className="font-display text-2xl text-foreground mb-4">{d.title}</h3>
-            <div className="flex items-center justify-center gap-2 text-muted-foreground mb-2">
-              <Clock className="w-4 h-4" />
-              <span className="font-sans text-sm">{d.time}</span>
-            </div>
             <a
               href={d.link}
               target="_blank"
