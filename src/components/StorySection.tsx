@@ -1,19 +1,5 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
-
-const WEDDING_DATE = new Date("2026-09-05T14:00:00");
-
-function getTimeLeft() {
-  const diff = WEDDING_DATE.getTime() - Date.now();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
-}
 
 const events = [
   { date: "Вересень 2017", title: "Перша зустріч", text: "Ми зустрілися на весіллі Ігоря та Віки (наших теперішніх кумів)." },
