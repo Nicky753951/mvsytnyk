@@ -1,5 +1,19 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+
+const WEDDING_DATE = new Date("2026-09-05T14:00:00");
+
+function getTimeLeft() {
+  const diff = WEDDING_DATE.getTime() - Date.now();
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
 
 const events = [
   { date: "Вересень 2017", title: "Перша зустріч", text: "Ми зустрілися на весіллі Ігоря та Віки (наших теперішніх кумів)." },
@@ -9,6 +23,20 @@ const events = [
 ];
 
 const StorySection = () => {
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const items = [
+    { value: timeLeft.days, label: "днів" },
+    { value: timeLeft.hours, label: "годин" },
+    { value: timeLeft.minutes, label: "хвилин" },
+    { value: timeLeft.seconds, label: "секунд" },
+  ];
+
   return (
     <section className="wedding-section text-center">
       <motion.div
@@ -23,7 +51,6 @@ const StorySection = () => {
       </motion.div>
 
       <div className="max-w-2xl mx-auto mt-16 relative mb-20">
-        {/* Timeline line */}
         <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-border hidden md:block" />
 
         {events.map((event, i) => (
@@ -46,6 +73,34 @@ const StorySection = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Countdown */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <p 
+          className="text-[22px] max-w-xl mx-auto leading-relaxed not-italic text-[#6b5e5a] mb-10"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          До нашого свята залишилось:
+        </p>
+        
+        <div className="flex justify-center gap-8 md:gap-14 mb-4">
+          {items.map((item) => (
+            <div key={item.label} className="text-center">
+              <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
+                {item.value}
+              </span>
+              <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
+                {item.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
