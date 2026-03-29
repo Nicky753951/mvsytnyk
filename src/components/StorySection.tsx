@@ -63,7 +63,7 @@ const StorySection = () => {
             transition={{ duration: 0.6, delay: i * 0.15 }}
           >
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-secondary items-center justify-center z-10">
-              <Heart className="w-3 h-3 text-primary" />
+              <Heart className="w-3 h-3 text-white" />
             </div>
             <div className={`md:w-5/12 ${i % 2 === 0 ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`}>
               <p className="font-sans text-xs tracking-widest uppercase text-accent mb-2">{event.date}</p>
