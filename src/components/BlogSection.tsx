@@ -14,7 +14,7 @@ import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 
 const posts = [
-{src: gallery3, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки ♾️" },
+{src: gallery3, date: "15 березня 2026", caption: "А ми вже обрали весільні обручки ♾️" },
     { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" },
    { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
   { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
