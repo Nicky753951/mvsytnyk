@@ -13,10 +13,10 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 
 const posts = [
-  { src: gallery1, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
-   { src: gallery2, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
+
+   { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
+    { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW" },
     {src: gallery3, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
-    {src: gallery4, date: "14 березня 2026", caption: "Провели зустріч із ведучою весілля" },
 ];
 
 const BlogSection = () => {
