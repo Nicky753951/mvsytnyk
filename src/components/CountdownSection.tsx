@@ -54,31 +54,6 @@ const WeddingCalendar = () => {
 };
 
 const CountdownSection = () => {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
-
-  function getTimeLeft() {
-    const diff = WEDDING_DATE.getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    return {
-      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((diff / (1000 * 60)) % 60),
-      seconds: Math.floor((diff / 1000) % 60),
-    };
-  }
-
-  useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const items = [
-    { value: timeLeft.days, label: "днів" },
-    { value: timeLeft.hours, label: "годин" },
-    { value: timeLeft.minutes, label: "хвилин" },
-    { value: timeLeft.seconds, label: "секунд" },
-  ];
-
   return (
     <section className="wedding-section bg-[#fffcf9] text-center py-20 px-6">
       <motion.div
@@ -95,29 +70,10 @@ const CountdownSection = () => {
         </h2>
 
         <WeddingCalendar />
-
-        <p 
-          className={TEXT_STYLE + " mt-16"} 
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          До нашого свята залишилось:
-        </p>
-        
-        <div className="flex justify-center gap-8 md:gap-14">
-          {items.map((item) => (
-            <div key={item.label} className="text-center">
-              <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
-                {item.value}
-              </span>
-              <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
-                {item.label}
-              </p>
-            </div>
-          ))}
-        </div>
       </motion.div>
     </section>
   );
 };
 
+export { WEDDING_DATE };
 export default CountdownSection;
