@@ -7,11 +7,15 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 
 const posts = [
-  { src: gallery3, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
+  { src: gallery1, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
+    src: gallery2, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
+    src: gallery3, date: "15 березня 2026", caption: "А ми вже придбали весільні обручки" },
   { src: gallery4, date: "14 березня 2026", caption: "Провели зустріч із ведучою весілля" },
 ];
 
@@ -24,8 +28,8 @@ const BlogSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <p className="wedding-subheading text-muted-foreground mb-2">Підготовка до весілля</p>
-        <h2 className="wedding-heading text-foreground mb-4">Блог</h2>
+        <p className="wedding-subheading text-muted-foreground mb-2">Моменти щастя</p>
+        <h2 className="wedding-heading text-foreground mb-4">Наш блог</h2>
         <div className="gold-divider" />
       </motion.div>
 
