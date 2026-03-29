@@ -21,7 +21,7 @@ const DetailsSection = () => {
         transition={{ duration: 0.8 }}
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Деталі свята</p>
-        <h2 className="wedding-heading text-foreground mb-4">Коли та де</h2>
+        <h2 className="wedding-heading text-foreground mb-4">Головні координати дня</h2>
         <div className="gold-divider" />
       </motion.div>
 
