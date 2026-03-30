@@ -79,7 +79,7 @@ const CountdownSection = () => {
   ];
 
   return (
-    <section className="wedding-section bg-[#fffcf9] text-center py-20 px-6">
+    <section className="wedding-section bg-[#fffcf9] text-center">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
