@@ -23,7 +23,7 @@ const StorySection = () => {
         <div className="gold-divider" />
       </motion.div>
 
-      <div className="max-w-2xl mx-auto mt-12 relative mb-12">
+      <div className="max-w-2xl mx-auto mt-12 relative mb-4">
         <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-border hidden md:block" />
 
         {events.map((event, i) => (
