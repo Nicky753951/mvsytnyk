@@ -36,7 +36,7 @@ const BlogSection = () => {
         transition={{ duration: 0.8 }}
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Моменти щастя</p>
-        <h2 className="wedding-heading text-foreground mb-4">Наш фотоблог</h2>
+        <h2 className="wedding-heading text-foreground mb-4">Наші спогади</h2>
         <div className="gold-divider" />
       </motion.div>
 
