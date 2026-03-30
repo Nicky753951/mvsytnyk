@@ -21,7 +21,7 @@ const wishes = [
 
 const WishesSection = () => {
   return (
-    <section className="wedding-section bg-foreground text-center py-20 px-4">
+    <section className="wedding-section bg-foreground text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

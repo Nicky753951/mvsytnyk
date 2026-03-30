@@ -88,7 +88,7 @@
 
 @layer components {
   .wedding-section {
-    @apply py-20 md:py-28 px-6;
+    @apply py-14 md:py-20 px-6;
   }
 
   .wedding-heading {
