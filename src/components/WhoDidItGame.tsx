@@ -125,7 +125,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
           <div className="p-6 md:p-8">
             {/* Header */}
             <h3 className="font-display text-xl md:text-2xl text-foreground text-center mb-1">
-              Хто це зробив?
+              Як добре знаєте наречених?
             </h3>
             <p className="text-center text-muted-foreground text-sm mb-6">
               Коля чи Віка? 🤔
