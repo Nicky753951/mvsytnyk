@@ -7,14 +7,16 @@ import BlogSection from "@/components/BlogSection";
 import WishesSection from "@/components/WishesSection";
 import FooterSection from "@/components/FooterSection";
 import ScrollToTop from "@/components/ScrollToTop";
+import GameButton from "@/components/GameButton";
 
 const Index = () => {
   return (
     <main className="overflow-hidden">
       <ScrollToTop />
+      <GameButton />
       <HeroSection />
       <CountdownSection />
-       <DetailsSection />
+      <DetailsSection />
       <StorySection />
       <BlogSection />
       <WishesSection />
