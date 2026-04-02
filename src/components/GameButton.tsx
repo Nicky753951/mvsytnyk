@@ -25,7 +25,7 @@ const GameButton = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: "spring", damping: 20 }}
             onClick={() => setGameOpen(true)}
-            className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-accent text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-display text-sm"
+            className="fixed bottom-6 right-20 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-accent text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all font-display text-sm"
           >
             <Gamepad2 className="w-5 h-5" />
             Зіграй у гру
