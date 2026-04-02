@@ -68,8 +68,8 @@ const DetailsSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
+        <Clock className="w-10 h-10 text-accent mx-auto mb-6" strokeWidth={1.2} />
         <h3 className="font-display text-2xl text-foreground mb-2">Програма дня</h3>
-        <div className="gold-divider" />
       </motion.div>
 
       <div className="max-w-md mx-auto mt-10 relative">
