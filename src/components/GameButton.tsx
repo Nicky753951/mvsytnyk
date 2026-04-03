@@ -8,8 +8,13 @@ const GameButton = () => {
   const [gameOpen, setGameOpen] = useState(false);
 
   useEffect(() => {
+    let lastY = window.scrollY;
     const handleScroll = () => {
-      setVisible(window.scrollY > 600);
+      const y = window.scrollY;
+      const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 80);
+      const scrollingUp = y < lastY;
+      setVisible(y > 600 && (!atBottom || scrollingUp));
+      lastY = y;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
