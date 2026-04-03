@@ -198,7 +198,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                 <div className="flex gap-3 mt-6">
                   <Button
                     variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none ${
+                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none active:bg-transparent ${
                       revealed === "koля"
                         ? "border-accent bg-accent/10 text-accent"
                         : revealed === "віка"
@@ -212,7 +212,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                   </Button>
                   <Button
                     variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none ${
+                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none active:bg-transparent ${
                       revealed === "віка"
                         ? "border-accent bg-accent/10 text-accent"
                         : revealed === "koля"
