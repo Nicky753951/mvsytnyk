@@ -30,19 +30,11 @@ const FooterSection = () => {
 
   return (
     <footer className="py-12 text-center bg-foreground">
-      <Heart className="w-5 h-5 text-accent mx-auto mb-4" strokeWidth={1.2} />
-      <p className="font-display text-2xl text-primary-foreground mb-2">Микола & Вікторія</p>
-      <p className="font-sans text-xs tracking-widest uppercase text-primary-foreground/60 mb-10">
-        5 вересня 2026 · Ресторан «Софіївський посад»
-      </p>
-
       {/* Countdown */}
-      <p
-        className="font-display text-lg text-primary-foreground/70 mb-6"
-      >
+      <p className="font-display text-lg text-primary-foreground/70 mb-6">
         До нашого свята залишилось:
       </p>
-      <div className="flex justify-center gap-8 md:gap-14">
+      <div className="flex justify-center gap-8 md:gap-14 mb-10">
         {items.map((item) => (
           <div key={item.label} className="text-center">
             <span className="block font-display text-3xl md:text-4xl text-primary-foreground font-light">
@@ -54,6 +46,12 @@ const FooterSection = () => {
           </div>
         ))}
       </div>
+
+      <Heart className="w-5 h-5 text-accent mx-auto mb-4" strokeWidth={1.2} />
+      <p className="font-display text-2xl text-primary-foreground mb-2">Микола & Вікторія</p>
+      <p className="font-sans text-xs tracking-widest uppercase text-primary-foreground/60">
+        5 вересня 2026 · Ресторан «Софіївський посад»
+      </p>
     </footer>
   );
 };
