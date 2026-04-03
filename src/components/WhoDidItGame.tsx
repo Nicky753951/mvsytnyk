@@ -198,28 +198,28 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                 <div className="flex gap-3 mt-6">
                   <Button
                     variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all ${
+                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:outline-none focus-visible:outline-none hover:bg-transparent ${
                       revealed === "koля"
                         ? "border-accent bg-accent/10 text-accent"
                         : revealed === "віка"
                         ? "opacity-50"
                         : "hover:border-accent"
                     }`}
-                    onClick={() => handleAnswer("koля")}
+                    onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("koля"); }}
                     disabled={!!revealed}
                   >
                     👦 Коля
                   </Button>
                   <Button
                     variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all ${
+                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:outline-none focus-visible:outline-none hover:bg-transparent ${
                       revealed === "віка"
                         ? "border-accent bg-accent/10 text-accent"
                         : revealed === "koля"
                         ? "opacity-50"
                         : "hover:border-accent"
                     }`}
-                    onClick={() => handleAnswer("віка")}
+                    onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("віка"); }}
                     disabled={!!revealed}
                   >
                     👧 Віка
