@@ -195,7 +195,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                 </div>
 
                 {/* Answer buttons */}
-                <div className="flex gap-3 mt-6">
+                <div key={current} className="flex gap-3 mt-6">
                   <Button
                     variant="outline"
                     className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none active:bg-transparent ${
