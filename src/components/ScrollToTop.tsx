@@ -6,7 +6,14 @@ const ScrollToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 80);
+      const scrollingUp = y < lastY;
+      setVisible(y > 400 && (!atBottom || scrollingUp));
+      lastY = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
