@@ -95,26 +95,6 @@ const CountdownSection = () => {
 
         <WeddingCalendar />
 
-        {/* Countdown */}
-        <p 
-          className="text-[22px] max-w-xl mx-auto leading-relaxed not-italic text-[#6b5e5a] mb-10 mt-10"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          До нашого свята залишилось:
-        </p>
-        
-        <div className="flex justify-center gap-8 md:gap-14 mb-4">
-          {items.map((item) => (
-            <div key={item.label} className="text-center">
-              <span className="block font-display text-4xl md:text-5xl text-[#6b5e5a] font-light">
-                {item.value}
-              </span>
-              <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#9e8a84] mt-3">
-                {item.label}
-              </p>
-            </div>
-          ))}
-        </div>
       </motion.div>
     </section>
   );
