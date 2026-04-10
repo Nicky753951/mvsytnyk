@@ -86,6 +86,16 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     setLoadingPlaylist(false);
   };
 
+  const firstSuccess = (promises: Promise<Song[]>[]): Promise<Song[]> =>
+    new Promise((resolve) => {
+      let done = false;
+      let rejected = 0;
+      promises.forEach((p) => {
+        p.then((val) => { if (!done) { done = true; resolve(val); } })
+         .catch(() => { if (++rejected === promises.length && !done) resolve([]); });
+      });
+    });
+
   const fetchSongs = async (q: string): Promise<Song[]> => {
     const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`;
     const deadline = (ms: number) => new Promise<never>((_, r) => setTimeout(r, ms));
@@ -99,14 +109,18 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     ]).catch(() => Promise.reject());
 
     const tryEdge = Promise.race([
-      supabase.functions.invoke("search-music", { body: { q } }).then(({ data, error }) => {
-        if (error || !Array.isArray(data?.results)) throw new Error();
-        return data.results as Song[];
+      fetch("https://pbnkjudgmflgeyosjqsl.supabase.co/functions/v1/search-music", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ q }),
+      }).then(r => r.json()).then(d => {
+        if (!Array.isArray(d.results)) throw new Error();
+        return d.results as Song[];
       }),
       deadline(4000),
     ]).catch(() => Promise.reject());
 
-    return Promise.any([tryDirect, tryEdge]).catch(() => []);
+    return firstSuccess([tryDirect, tryEdge]);
   };
 
   const searchSongs = (q: string) => {
@@ -118,9 +132,14 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     }
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
-      const songs = await fetchSongs(q);
-      setResults(songs);
-      setSearching(false);
+      try {
+        const songs = await fetchSongs(q);
+        setResults(songs);
+      } catch {
+        setResults([]);
+      } finally {
+        setSearching(false);
+      }
     }, 500);
   };
 
