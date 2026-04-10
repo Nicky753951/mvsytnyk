@@ -75,7 +75,7 @@ const DetailsSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 py-4 rounded-2xl font-display text-sm tracking-[0.15em] transition-colors text-white"
-            style={{ backgroundColor: "#527a66" }}
+            style={{ backgroundColor: "#464039" }}
           >
             Прокласти маршрут
             <ExternalLink className="w-3.5 h-3.5 text-white opacity-70" />
