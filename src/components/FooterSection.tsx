@@ -76,6 +76,7 @@ const FooterSection = () => {
       </p>
 
       <GuestbookPopup open={guestbookOpen} onClose={() => setGuestbookOpen(false)} />
+      <MusicRequestPopup open={musicOpen} onClose={() => setMusicOpen(false)} />
     </footer>
   );
 };
