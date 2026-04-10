@@ -95,20 +95,14 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     }
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
-      const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8&country=UA`;
       try {
-        const res = await fetch(itunesUrl, { mode: "cors" });
-        const data = await res.json();
-        setResults(data.results || []);
+        const { data, error } = await supabase.functions.invoke("search-music", {
+          body: { q },
+        });
+        if (error) throw error;
+        setResults(data?.results || []);
       } catch {
-        // Fallback via CORS proxy for iOS Safari
-        try {
-          const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`);
-          const data = await res.json();
-          setResults(data.results || []);
-        } catch {
-          setResults([]);
-        }
+        setResults([]);
       }
       setSearching(false);
     }, 400);
