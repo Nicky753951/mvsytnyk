@@ -87,19 +87,40 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
   };
 
   const fetchSongs = async (q: string): Promise<Song[]> => {
-    // 1. Supabase Edge Function (server-side, no CORS)
+    const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`;
+
+    // 1. Direct fetch (works on desktop)
+    try {
+      const res = await fetch(itunesUrl);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.results)) return data.results;
+      }
+    } catch { /* fall through */ }
+
+    // 2. Supabase Edge Function (server-side, works on mobile when deployed)
     try {
       const { data, error } = await supabase.functions.invoke("search-music", { body: { q } });
       if (!error && Array.isArray(data?.results)) return data.results;
     } catch { /* fall through */ }
 
-    // 2. Fallback: allorigins proxy
+    // 3. corsproxy.io fallback
     try {
-      const target = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`;
-      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(target)}`);
-      const json = await res.json();
-      const inner = JSON.parse(json.contents ?? "{}");
-      if (Array.isArray(inner.results)) return inner.results;
+      const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.results)) return data.results;
+      }
+    } catch { /* fall through */ }
+
+    // 4. allorigins fallback
+    try {
+      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(itunesUrl)}`);
+      if (res.ok) {
+        const json = await res.json();
+        const inner = JSON.parse(json.contents ?? "{}");
+        if (Array.isArray(inner.results)) return inner.results;
+      }
     } catch { /* fall through */ }
 
     return [];
