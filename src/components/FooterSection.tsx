@@ -16,6 +16,7 @@ function getTimeLeft() {
 
 const FooterSection = () => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [guestbookOpen, setGuestbookOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
