@@ -1,7 +1,10 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, RotateCcw, PartyPopper } from "lucide-react";
+import { X, RotateCcw, PartyPopper, Play, Pause, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import victoriaUrl from "@/assets/Nick Sytnyk - Вікторія.mp3";
+
+const SONG_CARD_TEXT = "Написав пісню про другу половинку";
 
 interface Card {
   text: string;
@@ -9,7 +12,7 @@ interface Card {
 }
 
 const allCards: Card[] = [
-  { text: "Має улюблену чашку і п'є каву тільки з неї", answer: "koля" },
+  { text: "Написав пісню про другу половинку", answer: "koля" },
   { text: "Прикрасив свій робочий стіл квіткою і свічкою", answer: "віка" },
   { text: "Довго вибирає що подивитись і врешті вмикає вже переглянуте", answer: "koля" },
   { text: "Забув відповісти на повідомлення і згадав через два дні", answer: "віка" },
@@ -52,9 +55,32 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
   const [revealed, setRevealed] = useState<string | null>(null);
   const [finished, setFinished] = useState(false);
   const [direction, setDirection] = useState(1);
+  const [showSongPlayer, setShowSongPlayer] = useState(false);
+  const [songPlaying, setSongPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const total = cards.length;
   const progress = finished ? 100 : (current / total) * 100;
+
+  const stopSong = useCallback(() => {
+    audioRef.current?.pause();
+    if (audioRef.current) audioRef.current.currentTime = 0;
+    setSongPlaying(false);
+  }, []);
+
+  const toggleSong = useCallback(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(victoriaUrl);
+      audioRef.current.onended = () => setSongPlaying(false);
+    }
+    if (songPlaying) {
+      audioRef.current.pause();
+      setSongPlaying(false);
+    } else {
+      audioRef.current.play();
+      setSongPlaying(true);
+    }
+  }, [songPlaying]);
 
   const handleAnswer = useCallback(
     (answer: "koля" | "віка") => {
@@ -63,29 +89,54 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
       if (correct) setScore((s) => s + 1);
       setRevealed(cards[current].answer);
 
-      setTimeout(() => {
-        if (current + 1 >= total) {
-          setFinished(true);
-        } else {
-          setDirection(1);
-          setCurrent((c) => c + 1);
-        }
-        setRevealed(null);
-      }, 1200);
+      if (cards[current].text === SONG_CARD_TEXT) {
+        setShowSongPlayer(true);
+      } else {
+        setTimeout(() => {
+          if (current + 1 >= total) {
+            setFinished(true);
+          } else {
+            setDirection(1);
+            setCurrent((c) => c + 1);
+          }
+          setRevealed(null);
+        }, 1200);
+      }
     },
     [revealed, cards, current, total]
   );
 
+  const handleNext = useCallback(() => {
+    stopSong();
+    setShowSongPlayer(false);
+    setRevealed(null);
+    if (current + 1 >= total) {
+      setFinished(true);
+    } else {
+      setDirection(1);
+      setCurrent((c) => c + 1);
+    }
+  }, [current, total, stopSong]);
+
   const restart = useCallback(() => {
+    stopSong();
+    setShowSongPlayer(false);
     setCards(shuffle(allCards));
     setCurrent(0);
     setScore(0);
     setRevealed(null);
     setFinished(false);
     setDirection(1);
-  }, []);
+  }, [stopSong]);
+
+  const handleClose = useCallback(() => {
+    stopSong();
+    onClose();
+  }, [onClose, stopSong]);
 
   if (!open) return null;
+
+  const isSongCard = cards[current].text === SONG_CARD_TEXT;
 
   return (
     <AnimatePresence>
@@ -94,7 +145,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={onClose}
+        onClick={handleClose}
       >
         <motion.div
           className="relative bg-card rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
@@ -106,7 +157,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
         >
           {/* Close */}
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-3 right-3 z-10 p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
           >
             <X className="w-5 h-5" />
@@ -190,6 +241,30 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                           {revealed === "koля" ? "Коля 👦" : "Віка 👧"}!
                         </motion.p>
                       )}
+
+                      {/* Song player — показується тільки для спеціальної картки */}
+                      {revealed && showSongPlayer && isSongCard && (
+                        <motion.div
+                          className="mt-4 pt-4 border-t border-border"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <p className="text-xs text-muted-foreground mb-3">
+                            🎵 Коля написав для Віки пісню
+                          </p>
+                          <button
+                            onClick={toggleSong}
+                            className="mx-auto flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans tracking-wide hover:bg-accent/90 transition-colors"
+                          >
+                            {songPlaying ? (
+                              <><Pause className="w-4 h-4" /> Пауза</>
+                            ) : (
+                              <><Play className="w-4 h-4 translate-x-px" /> Послухати «Вікторія»</>
+                            )}
+                          </button>
+                        </motion.div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -225,6 +300,24 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
                     👧 Віка
                   </Button>
                 </div>
+
+                {/* Кнопка "Далі" для картки з піснею */}
+                {showSongPlayer && isSongCard && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-3"
+                  >
+                    <Button
+                      onClick={handleNext}
+                      variant="ghost"
+                      className="w-full text-muted-foreground hover:text-foreground gap-1"
+                    >
+                      Далі <ChevronRight className="w-4 h-4" />
+                    </Button>
+                  </motion.div>
+                )}
 
                 {/* Score */}
                 <p className="text-center text-sm text-muted-foreground mt-4">
