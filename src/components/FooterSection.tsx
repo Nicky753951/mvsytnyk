@@ -1,6 +1,7 @@
-import { Heart } from "lucide-react";
+import { Heart, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { WEDDING_DATE } from "./CountdownSection";
+import GuestbookPopup from "./GuestbookPopup";
 
 function getTimeLeft() {
   const diff = WEDDING_DATE.getTime() - Date.now();
@@ -15,6 +16,7 @@ function getTimeLeft() {
 
 const FooterSection = () => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [guestbookOpen, setGuestbookOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
@@ -47,11 +49,22 @@ const FooterSection = () => {
         ))}
       </div>
 
+      {/* Guestbook button */}
+      <button
+        onClick={() => setGuestbookOpen(true)}
+        className="inline-flex items-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-3 font-sans text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground hover:text-foreground transition-colors duration-300 mb-10"
+      >
+        <BookOpen className="w-4 h-4" />
+        Залиште побажання
+      </button>
+
       <Heart className="w-5 h-5 text-accent mx-auto mb-4" strokeWidth={1.2} />
       <p className="font-display text-2xl text-primary-foreground mb-2">Микола & Вікторія</p>
       <p className="font-sans text-xs tracking-widest uppercase text-primary-foreground/60">
         5 вересня 2026 · Ресторан «Софіївський посад»
       </p>
+
+      <GuestbookPopup open={guestbookOpen} onClose={() => setGuestbookOpen(false)} />
     </footer>
   );
 };
