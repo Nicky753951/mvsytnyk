@@ -1,7 +1,8 @@
-import { Heart, BookOpen } from "lucide-react";
+import { Heart, BookOpen, Music } from "lucide-react";
 import { useState, useEffect } from "react";
 import { WEDDING_DATE } from "./CountdownSection";
 import GuestbookPopup from "./GuestbookPopup";
+import MusicRequestPopup from "./MusicRequestPopup";
 
 function getTimeLeft() {
   const diff = WEDDING_DATE.getTime() - Date.now();
@@ -17,6 +18,7 @@ function getTimeLeft() {
 const FooterSection = () => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
   const [guestbookOpen, setGuestbookOpen] = useState(false);
+  const [musicOpen, setMusicOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
@@ -49,14 +51,23 @@ const FooterSection = () => {
         ))}
       </div>
 
-      {/* Guestbook button */}
-      <button
-        onClick={() => setGuestbookOpen(true)}
-        className="inline-flex items-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-3 font-sans text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground hover:text-foreground transition-colors duration-300 mb-10"
-      >
-        <BookOpen className="w-4 h-4" />
-        Залиште побажання
-      </button>
+      {/* Action buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+        <button
+          onClick={() => setGuestbookOpen(true)}
+          className="inline-flex items-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-3 font-sans text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground hover:text-foreground transition-colors duration-300"
+        >
+          <BookOpen className="w-4 h-4" />
+          Залиште побажання
+        </button>
+        <button
+          onClick={() => setMusicOpen(true)}
+          className="inline-flex items-center gap-2 border border-accent/50 text-accent px-8 py-3 font-sans text-xs tracking-[0.3em] uppercase hover:bg-accent hover:text-accent-foreground transition-colors duration-300"
+        >
+          <Music className="w-4 h-4" />
+          Оберіть пісню
+        </button>
+      </div>
 
       <Heart className="w-5 h-5 text-accent mx-auto mb-4" strokeWidth={1.2} />
       <p className="font-display text-2xl text-primary-foreground mb-2">Микола & Вікторія</p>
@@ -65,6 +76,7 @@ const FooterSection = () => {
       </p>
 
       <GuestbookPopup open={guestbookOpen} onClose={() => setGuestbookOpen(false)} />
+      <MusicRequestPopup open={musicOpen} onClose={() => setMusicOpen(false)} />
     </footer>
   );
 };

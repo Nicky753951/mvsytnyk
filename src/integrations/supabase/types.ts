@@ -35,6 +35,36 @@ export type Database = {
         }
         Relationships: []
       }
+      song_requests: {
+        Row: {
+          artist_name: string
+          artwork_url: string | null
+          created_at: string
+          guest_name: string
+          id: string
+          preview_url: string | null
+          song_title: string
+        }
+        Insert: {
+          artist_name: string
+          artwork_url?: string | null
+          created_at?: string
+          guest_name: string
+          id?: string
+          preview_url?: string | null
+          song_title: string
+        }
+        Update: {
+          artist_name?: string
+          artwork_url?: string | null
+          created_at?: string
+          guest_name?: string
+          id?: string
+          preview_url?: string | null
+          song_title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
