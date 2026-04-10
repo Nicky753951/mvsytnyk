@@ -96,16 +96,21 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
       try {
-        const { data, error } = await supabase.functions.invoke("search-music", {
-          body: { q },
-        });
-        if (error) throw error;
-        setResults(data?.results || []);
+        const controller = new AbortController();
+        const tid = setTimeout(() => controller.abort(), 10000);
+        const res = await fetch(
+          `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`,
+          { signal: controller.signal }
+        );
+        clearTimeout(tid);
+        const text = await res.text();
+        const data = JSON.parse(text);
+        setResults(data.results || []);
       } catch {
         setResults([]);
       }
       setSearching(false);
-    }, 400);
+    }, 500);
   };
 
   const handleSubmit = async () => {
