@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Search, Music, Disc3, Plus, Check, Loader2 } from "lucide-react";
+import { X, Search, Music, Disc3, Plus, Check, Loader2, Play, Pause } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Song {
@@ -18,6 +18,7 @@ interface SavedRequest {
   song_title: string;
   artist_name: string;
   artwork_url: string | null;
+  preview_url: string | null;
   created_at: string;
 }
 
@@ -37,7 +38,23 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
   const [saved, setSaved] = useState(false);
   const [playlist, setPlaylist] = useState<SavedRequest[]>([]);
   const [loadingPlaylist, setLoadingPlaylist] = useState(false);
+  const [playingUrl, setPlayingUrl] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const searchTimeout = useRef<ReturnType<typeof setTimeout>>();
+
+  const togglePlay = (url: string) => {
+    if (playingUrl === url) {
+      audioRef.current?.pause();
+      setPlayingUrl(null);
+    } else {
+      if (audioRef.current) audioRef.current.pause();
+      const audio = new Audio(url);
+      audio.onended = () => setPlayingUrl(null);
+      audio.play();
+      audioRef.current = audio;
+      setPlayingUrl(url);
+    }
+  };
 
   useEffect(() => {
     if (open && tab === "playlist") loadPlaylist();
@@ -45,6 +62,9 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
 
   useEffect(() => {
     if (!open) {
+      audioRef.current?.pause();
+      audioRef.current = null;
+      setPlayingUrl(null);
       setQuery("");
       setResults([]);
       setSelectedSong(null);
@@ -276,10 +296,9 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
 
                         <div className="space-y-2">
                           {results.map((song) => (
-                            <motion.button
+                            <motion.div
                               key={song.trackId}
-                              onClick={() => setSelectedSong(song)}
-                              className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-accent/10 transition-colors text-left"
+                              className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-accent/10 transition-colors"
                               initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
                             >
@@ -294,16 +313,33 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
                                   <Music className="w-5 h-5 text-muted-foreground" />
                                 </div>
                               )}
-                              <div className="flex-1 min-w-0">
+                              <button
+                                onClick={() => setSelectedSong(song)}
+                                className="flex-1 min-w-0 text-left"
+                              >
                                 <p className="font-display text-sm text-foreground truncate">
                                   {song.trackName}
                                 </p>
                                 <p className="font-body text-xs text-muted-foreground truncate">
                                   {song.artistName}
                                 </p>
-                              </div>
-                              <Plus className="w-5 h-5 text-accent flex-shrink-0" />
-                            </motion.button>
+                              </button>
+                              {song.previewUrl && (
+                                <button
+                                  onClick={() => togglePlay(song.previewUrl!)}
+                                  className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent/20 flex items-center justify-center text-accent flex-shrink-0 transition-colors"
+                                >
+                                  {playingUrl === song.previewUrl ? (
+                                    <Pause className="w-4 h-4" />
+                                  ) : (
+                                    <Play className="w-4 h-4 translate-x-px" />
+                                  )}
+                                </button>
+                              )}
+                              <button onClick={() => setSelectedSong(song)}>
+                                <Plus className="w-5 h-5 text-accent flex-shrink-0" />
+                              </button>
+                            </motion.div>
                           ))}
                         </div>
                       </div>
@@ -356,9 +392,23 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
                                 {item.artist_name}
                               </p>
                             </div>
-                            <span className="font-sans text-[10px] text-muted-foreground/70 flex-shrink-0">
-                              від {item.guest_name}
-                            </span>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <span className="font-sans text-[10px] text-muted-foreground/70">
+                                від {item.guest_name}
+                              </span>
+                              {item.preview_url && (
+                                <button
+                                  onClick={() => togglePlay(item.preview_url!)}
+                                  className="w-7 h-7 rounded-full bg-accent/10 hover:bg-accent/20 flex items-center justify-center text-accent transition-colors"
+                                >
+                                  {playingUrl === item.preview_url ? (
+                                    <Pause className="w-3.5 h-3.5" />
+                                  ) : (
+                                    <Play className="w-3.5 h-3.5 translate-x-px" />
+                                  )}
+                                </button>
+                              )}
+                            </div>
                           </motion.div>
                         ))}
                       </div>
