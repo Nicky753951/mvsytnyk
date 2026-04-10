@@ -86,32 +86,24 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     setLoadingPlaylist(false);
   };
 
-  const searchViaJsonp = (q: string): Promise<Song[]> =>
-    new Promise((resolve) => {
-      const cbName = `_itcb${Date.now()}`;
-      const script = document.createElement("script");
-      const timer = setTimeout(() => {
-        delete (window as unknown as Record<string, unknown>)[cbName];
-        script.remove();
-        resolve([]);
-      }, 10000);
+  const fetchSongs = async (q: string): Promise<Song[]> => {
+    // 1. Supabase Edge Function (server-side, no CORS)
+    try {
+      const { data, error } = await supabase.functions.invoke("search-music", { body: { q } });
+      if (!error && Array.isArray(data?.results)) return data.results;
+    } catch { /* fall through */ }
 
-      (window as unknown as Record<string, unknown>)[cbName] = (data: { results?: Song[] }) => {
-        clearTimeout(timer);
-        delete (window as unknown as Record<string, unknown>)[cbName];
-        script.remove();
-        resolve(data.results || []);
-      };
+    // 2. Fallback: allorigins proxy
+    try {
+      const target = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`;
+      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(target)}`);
+      const json = await res.json();
+      const inner = JSON.parse(json.contents ?? "{}");
+      if (Array.isArray(inner.results)) return inner.results;
+    } catch { /* fall through */ }
 
-      script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8&callback=${cbName}`;
-      script.onerror = () => {
-        clearTimeout(timer);
-        delete (window as unknown as Record<string, unknown>)[cbName];
-        script.remove();
-        resolve([]);
-      };
-      document.head.appendChild(script);
-    });
+    return [];
+  };
 
   const searchSongs = (q: string) => {
     setQuery(q);
@@ -122,7 +114,7 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     }
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
-      const songs = await searchViaJsonp(q);
+      const songs = await fetchSongs(q);
       setResults(songs);
       setSearching(false);
     }, 500);
