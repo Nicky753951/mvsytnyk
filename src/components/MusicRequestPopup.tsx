@@ -50,7 +50,10 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
       if (audioRef.current) audioRef.current.pause();
       const audio = new Audio(url);
       audio.onended = () => setPlayingUrl(null);
-      audio.play();
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => setPlayingUrl(null));
+      }
       audioRef.current = audio;
       setPlayingUrl(url);
     }
@@ -92,14 +95,20 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     }
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
+      const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8&country=UA`;
       try {
-        const res = await fetch(
-          `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&limit=8&lang=uk_ua`
-        );
+        const res = await fetch(itunesUrl, { mode: "cors" });
         const data = await res.json();
         setResults(data.results || []);
       } catch {
-        setResults([]);
+        // Fallback via CORS proxy for iOS Safari
+        try {
+          const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`);
+          const data = await res.json();
+          setResults(data.results || []);
+        } catch {
+          setResults([]);
+        }
       }
       setSearching(false);
     }, 400);
