@@ -86,6 +86,33 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     setLoadingPlaylist(false);
   };
 
+  const searchViaJsonp = (q: string): Promise<Song[]> =>
+    new Promise((resolve) => {
+      const cbName = `_itcb${Date.now()}`;
+      const script = document.createElement("script");
+      const timer = setTimeout(() => {
+        delete (window as unknown as Record<string, unknown>)[cbName];
+        script.remove();
+        resolve([]);
+      }, 10000);
+
+      (window as unknown as Record<string, unknown>)[cbName] = (data: { results?: Song[] }) => {
+        clearTimeout(timer);
+        delete (window as unknown as Record<string, unknown>)[cbName];
+        script.remove();
+        resolve(data.results || []);
+      };
+
+      script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8&callback=${cbName}`;
+      script.onerror = () => {
+        clearTimeout(timer);
+        delete (window as unknown as Record<string, unknown>)[cbName];
+        script.remove();
+        resolve([]);
+      };
+      document.head.appendChild(script);
+    });
+
   const searchSongs = (q: string) => {
     setQuery(q);
     if (searchTimeout.current) clearTimeout(searchTimeout.current);
@@ -95,20 +122,8 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
     }
     searchTimeout.current = setTimeout(async () => {
       setSearching(true);
-      try {
-        const controller = new AbortController();
-        const tid = setTimeout(() => controller.abort(), 10000);
-        const res = await fetch(
-          `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`,
-          { signal: controller.signal }
-        );
-        clearTimeout(tid);
-        const text = await res.text();
-        const data = JSON.parse(text);
-        setResults(data.results || []);
-      } catch {
-        setResults([]);
-      }
+      const songs = await searchViaJsonp(q);
+      setResults(songs);
       setSearching(false);
     }, 500);
   };
