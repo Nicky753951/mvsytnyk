@@ -1,6 +1,7 @@
-import { Heart } from "lucide-react";
+import { Heart, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { WEDDING_DATE } from "./CountdownSection";
+import GuestbookPopup from "./GuestbookPopup";
 
 function getTimeLeft() {
   const diff = WEDDING_DATE.getTime() - Date.now();
