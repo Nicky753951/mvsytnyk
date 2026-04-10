@@ -74,7 +74,8 @@ const DetailsSection = () => {
             href={MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-accent font-display text-sm tracking-[0.15em] hover:bg-accent/90 transition-colors text-white"
+            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-display text-sm tracking-[0.15em] transition-colors text-white"
+            style={{ backgroundColor: "#527a66" }}
           >
             Прокласти маршрут
             <ExternalLink className="w-3.5 h-3.5 text-white opacity-70" />
