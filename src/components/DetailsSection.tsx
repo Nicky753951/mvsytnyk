@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Clock, ParkingCircle, ExternalLink } from "lucide-react";
+import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
 import bzImg from "../assets/bz.webp";
 
 const MAPS_LINK = "https://www.google.com/maps?q=%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%9F%D0%BE%D1%81%D0%B0%D0%B4,+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0,+81/2,+%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%91%D0%BE%D1%80%D1%89%D0%B0%D0%B3%D1%96%D0%B2%D0%BA%D0%B0,+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+08131&ftid=0x40d4cbc6c11f7db9:0x87205c1af3bbb4d";
@@ -74,11 +74,10 @@ const DetailsSection = () => {
             href={MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-accent text-accent-foreground font-sans text-xs tracking-[0.15em] uppercase hover:bg-accent/90 transition-colors"
+            className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-accent font-display text-sm tracking-[0.15em] hover:bg-accent/90 transition-colors text-white"
           >
-            <MapPin className="w-4 h-4" />
             Прокласти маршрут
-            <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+            <ExternalLink className="w-3.5 h-3.5 text-white opacity-70" />
           </a>
         </div>
       </motion.div>
