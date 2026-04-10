@@ -95,7 +95,7 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
         if (!Array.isArray(d.results)) throw new Error();
         return d.results as Song[];
       }),
-      deadline(6000),
+      deadline(4000),
     ]).catch(() => Promise.reject());
 
     const tryEdge = Promise.race([
@@ -103,18 +103,10 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
         if (error || !Array.isArray(data?.results)) throw new Error();
         return data.results as Song[];
       }),
-      deadline(6000),
+      deadline(4000),
     ]).catch(() => Promise.reject());
 
-    const tryProxy = Promise.race([
-      fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`).then(r => r.json()).then(d => {
-        if (!Array.isArray(d.results)) throw new Error();
-        return d.results as Song[];
-      }),
-      deadline(6000),
-    ]).catch(() => Promise.reject());
-
-    return Promise.any([tryDirect, tryEdge, tryProxy]).catch(() => []);
+    return Promise.any([tryDirect, tryEdge]).catch(() => []);
   };
 
   const searchSongs = (q: string) => {
