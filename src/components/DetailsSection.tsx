@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { MapPin, Clock, ParkingCircle, ExternalLink } from "lucide-react";
+import bzImg from "../assets/bz.webp";
 
 const MAPS_LINK = "https://www.google.com/maps?q=%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%9F%D0%BE%D1%81%D0%B0%D0%B4,+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0,+81/2,+%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%91%D0%BE%D1%80%D1%89%D0%B0%D0%B3%D1%96%D0%B2%D0%BA%D0%B0,+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+08131&ftid=0x40d4cbc6c11f7db9:0x87205c1af3bbb4d";
-const MAPS_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5!2d30.3546!3d50.3972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cbc6c11f7db9%3A0x87205c1af3bbb4d!2z0KHQvtGE0ZbRl9Cy0YHRjNC60LjQuSDQn9C-0YHQsNC0!5e0!3m2!1suk!2sua!4v1";
 
 const program = [
   { time: "14:00", title: "Зустріч гостей", text: "Починаємо цей день з теплих обіймів, щирих усмішок і келиху ігристого" },
@@ -33,16 +33,13 @@ const DetailsSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        {/* Map */}
+        {/* Image */}
         <div className="rounded-2xl overflow-hidden bg-muted min-h-[280px] md:min-h-0">
-          <iframe
-            src={MAPS_EMBED}
-            width="100%"
-            height="100%"
-            style={{ border: 0, minHeight: "280px", display: "block" }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+          <img
+            src={bzImg}
+            alt="Софіївський Посад"
+            className="w-full h-full object-cover"
+            style={{ minHeight: "280px" }}
           />
         </div>
 
@@ -53,7 +50,8 @@ const DetailsSection = () => {
             <p className="font-sans text-[10px] tracking-widest uppercase text-muted-foreground mb-2">
               Місце проведення
             </p>
-            <h3 className="font-display text-xl text-foreground mb-2">Софіївський Посад</h3>
+            <h3 className="font-display text-xl text-foreground mb-1">Ресторан «Софіївський Посад»</h3>
+            <p className="font-sans text-[10px] tracking-widest uppercase text-accent mb-3">Банкетний зал «Версаль»</p>
             <p className="font-body text-sm text-muted-foreground">вул. Київська, 81/2</p>
             <p className="font-body text-sm text-muted-foreground">Софіївська Борщагівка, Київська обл.</p>
           </div>
