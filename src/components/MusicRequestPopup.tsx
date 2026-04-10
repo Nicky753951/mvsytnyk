@@ -88,42 +88,33 @@ const MusicRequestPopup = ({ open, onClose }: MusicRequestPopupProps) => {
 
   const fetchSongs = async (q: string): Promise<Song[]> => {
     const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(q)}&media=music&entity=song&limit=8`;
+    const deadline = (ms: number) => new Promise<never>((_, r) => setTimeout(r, ms));
 
-    // 1. Direct fetch (works on desktop)
-    try {
-      const res = await fetch(itunesUrl);
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data.results)) return data.results;
-      }
-    } catch { /* fall through */ }
+    const tryDirect = Promise.race([
+      fetch(itunesUrl).then(r => r.json()).then(d => {
+        if (!Array.isArray(d.results)) throw new Error();
+        return d.results as Song[];
+      }),
+      deadline(6000),
+    ]).catch(() => Promise.reject());
 
-    // 2. Supabase Edge Function (server-side, works on mobile when deployed)
-    try {
-      const { data, error } = await supabase.functions.invoke("search-music", { body: { q } });
-      if (!error && Array.isArray(data?.results)) return data.results;
-    } catch { /* fall through */ }
+    const tryEdge = Promise.race([
+      supabase.functions.invoke("search-music", { body: { q } }).then(({ data, error }) => {
+        if (error || !Array.isArray(data?.results)) throw new Error();
+        return data.results as Song[];
+      }),
+      deadline(6000),
+    ]).catch(() => Promise.reject());
 
-    // 3. corsproxy.io fallback
-    try {
-      const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data.results)) return data.results;
-      }
-    } catch { /* fall through */ }
+    const tryProxy = Promise.race([
+      fetch(`https://corsproxy.io/?${encodeURIComponent(itunesUrl)}`).then(r => r.json()).then(d => {
+        if (!Array.isArray(d.results)) throw new Error();
+        return d.results as Song[];
+      }),
+      deadline(6000),
+    ]).catch(() => Promise.reject());
 
-    // 4. allorigins fallback
-    try {
-      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(itunesUrl)}`);
-      if (res.ok) {
-        const json = await res.json();
-        const inner = JSON.parse(json.contents ?? "{}");
-        if (Array.isArray(inner.results)) return inner.results;
-      }
-    } catch { /* fall through */ }
-
-    return [];
+    return Promise.any([tryDirect, tryEdge, tryProxy]).catch(() => []);
   };
 
   const searchSongs = (q: string) => {
