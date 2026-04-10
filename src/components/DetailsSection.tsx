@@ -51,9 +51,9 @@ const DetailsSection = () => {
               Місце проведення
             </p>
             <h3 className="font-display text-xl text-foreground mb-1">Ресторан «Софіївський Посад»</h3>
-            <p className="font-sans text-[10px] tracking-widest uppercase text-accent mb-3">Банкетний зал «Версаль»</p>
-            <p className="font-body text-sm text-muted-foreground">вул. Київська, 81/2</p>
-            <p className="font-body text-sm text-muted-foreground">Софіївська Борщагівка, Київська обл.</p>
+            <p className="font-display text-sm text-accent mb-3">Банкетний зал «Версаль»</p>
+            <p className="font-display text-sm text-muted-foreground">вул. Київська, 81/2</p>
+            <p className="font-display text-sm text-muted-foreground">Софіївська Борщагівка, Київська обл.</p>
           </div>
 
           {/* Parking */}
@@ -64,7 +64,7 @@ const DetailsSection = () => {
               </div>
               <div>
                 <p className="font-sans text-[10px] tracking-widest uppercase text-muted-foreground">Паркінг</p>
-                <p className="font-display text-sm text-foreground">Безкоштовний</p>
+                <p className="font-display text-sm text-muted-foreground">Безкоштовний</p>
               </div>
             </div>
           </div>
