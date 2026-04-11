@@ -30,7 +30,7 @@ const GallerySection = () => {
       </motion.div>
 
       <motion.div
-        className="max-w-3xl mx-auto mt-8 md:mt-12 px-4 md:px-12"
+        className="max-w-3xl mx-auto mt-8 md:mt-12 px-0 md:px-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
