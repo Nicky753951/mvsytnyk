@@ -63,7 +63,7 @@ const WeatherWidget = () => {
           <div className="mt-4 flex items-start gap-2.5 rounded-xl bg-accent/8 border border-accent/15 px-4 py-3">
             <CloudSun className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
-              Зазвичай в цей день в Києві тепло та сонячно 🤍
+              Зазвичай в цей день в Києві тепло та сонячно
             </p>
           </div>
         </div>
