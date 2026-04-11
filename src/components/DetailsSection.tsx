@@ -75,11 +75,10 @@ const DetailsSection = () => {
             href={MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-display text-sm tracking-[0.15em] transition-colors text-white"
-            style={{ backgroundColor: "#464039" }}
+            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-display text-sm tracking-[0.15em] transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/85 hover:shadow-lg"
           >
             Прокласти маршрут
-            <ExternalLink className="w-3.5 h-3.5 text-white opacity-70" />
+            <ExternalLink className="w-3.5 h-3.5 opacity-70" />
           </a>
         </div>
       </motion.div>
