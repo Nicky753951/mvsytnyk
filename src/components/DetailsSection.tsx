@@ -122,6 +122,9 @@ const DetailsSection = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Weather widget */}
+      <WeatherWidget />
     </section>
   );
 };
