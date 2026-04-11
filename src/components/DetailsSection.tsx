@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
 import bzImg from "../assets/bz.webp";
+import WeatherWidget from "./WeatherWidget";
 
 const MAPS_LINK = "https://www.google.com/maps?q=%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%9F%D0%BE%D1%81%D0%B0%D0%B4,+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0,+81/2,+%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%91%D0%BE%D1%80%D1%89%D0%B0%D0%B3%D1%96%D0%B2%D0%BA%D0%B0,+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+08131&ftid=0x40d4cbc6c11f7db9:0x87205c1af3bbb4d";
 
@@ -121,6 +122,9 @@ const DetailsSection = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Weather widget */}
+      <WeatherWidget />
     </section>
   );
 };
