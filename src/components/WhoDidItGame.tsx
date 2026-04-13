@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, RotateCcw, PartyPopper, Play, Pause, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, RotateCcw, PartyPopper, Play, Pause, ChevronRight, Gamepad2 } from "lucide-react";
 import victoriaUrl from "@/assets/Nick Sytnyk - Вікторія.mp3";
 
 const SONG_CARD_TEXT = "Написав пісню про другу половинку";
@@ -13,7 +12,7 @@ interface Card {
 
 const allCards: Card[] = [
   { text: "Написав пісню про другу половинку", answer: "koля" },
-  { text: "Хоче завести французського бульдога", answer: "віка" },
+  { text: "Хоче завести французького бульдога", answer: "віка" },
   { text: "Вважає чорну діру гігантським комп'ютером", answer: "koля" },
   { text: "Забуває відповісти на повідомлення і згадує через два дні", answer: "віка" },
   { text: "Їсть одне й те саме на сніданок роками і задоволений", answer: "koля" },
@@ -141,189 +140,190 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={handleClose}
       >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-foreground/60 backdrop-blur-sm" onClick={handleClose} />
+
+        {/* Modal */}
         <motion.div
-          className="relative bg-card rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: "spring", damping: 25 }}
+          className="relative w-full max-w-md max-h-[85vh] bg-background rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          initial={{ scale: 0.9, y: 30 }}
+          animate={{ scale: 1, y: 0 }}
+          exit={{ scale: 0.9, y: 30 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Close */}
-          <button
-            onClick={handleClose}
-            className="absolute top-3 right-3 z-10 p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Progress bar */}
-          <div className="h-1.5 bg-muted">
-            <motion.div
-              className="h-full bg-accent"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.4 }}
-            />
-          </div>
-
-          <div className="p-6 md:p-8">
-            {/* Header */}
-            <h3 className="font-display text-xl md:text-2xl text-foreground text-center mb-1">
-              Гра «Хто з наречених»?
-            </h3>
-            <p className="text-center text-muted-foreground text-sm mb-6">
-              Коля чи Віка? 🤔
+          {/* Header */}
+          <div className="relative bg-gradient-to-br from-accent/20 to-secondary/30 px-6 pt-6 pb-4">
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-background/80 flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <Gamepad2 className="w-10 h-10 text-accent mb-3" strokeWidth={1.2} />
+            <h3 className="font-display text-2xl text-foreground">Хто з наречених?</h3>
+            <p className="font-body text-sm text-muted-foreground mt-1">
+              Вгадайте, хто це — Коля чи Віка? 🤔
             </p>
 
+            {/* Progress indicator */}
+            <div className="mt-4 flex items-center gap-3">
+              <div className="flex-1 h-1.5 bg-background/50 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-accent rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
+              <span className="font-sans text-xs text-muted-foreground tracking-wider">
+                {finished ? total : current} / {total}
+              </span>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto p-6">
             {finished ? (
-              /* Final screen */
               <motion.div
-                className="text-center py-6"
-                initial={{ opacity: 0, scale: 0.9 }}
+                className="text-center py-8"
+                initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
-                <PartyPopper className="w-12 h-12 text-accent mx-auto mb-4" strokeWidth={1.2} />
-                <p className="font-display text-3xl text-foreground mb-2">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <PartyPopper className="w-8 h-8 text-accent" strokeWidth={1.2} />
+                </div>
+                <p className="font-display text-3xl text-foreground mb-1">
                   {score} / {total}
                 </p>
-                <p className="text-muted-foreground mb-1">
+                <p className="font-body text-sm text-muted-foreground mb-1">
+                  Правильних відповідей
+                </p>
+                <p className="font-body text-muted-foreground mb-6">
                   {score >= 16
                     ? "Ви знаєте їх краще за них самих! 🏆"
                     : score >= 10
                     ? "Непогано! Ви уважний гість! 👏"
                     : "Є куди рости — дізнавайтесь більше! 😄"}
                 </p>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Правильних відповідей
-                </p>
-                <Button
+                <button
                   onClick={restart}
-                  className="bg-accent hover:bg-accent/90 text-white gap-2"
+                  className="w-full py-3 bg-accent text-accent-foreground font-sans text-xs tracking-[0.2em] uppercase rounded-xl hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
                 >
                   <RotateCcw className="w-4 h-4" />
                   Грати знову
-                </Button>
+                </button>
               </motion.div>
             ) : (
-              /* Card */
-              <>
-                <div className="relative min-h-[140px] flex items-center justify-center">
-                  <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current}
+                  initial={{ opacity: 0, x: direction * 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {/* Question card */}
+                  <div className="rounded-xl bg-accent/5 border border-border p-5 mb-5">
+                    <p className="font-display text-lg md:text-xl text-foreground leading-snug text-center">
+                      {cards[current].text}
+                    </p>
+
+                    {revealed && (
+                      <motion.div
+                        className="mt-4 pt-3 border-t border-border text-center"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                      >
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent font-sans text-sm">
+                          {revealed === "koля" ? "👦 Коля" : "👧 Віка"}
+                        </span>
+                      </motion.div>
+                    )}
+
+                    {/* Song player */}
+                    {revealed && showSongPlayer && isSongCard && (
+                      <motion.div
+                        className="mt-4 pt-3 border-t border-border text-center"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <p className="font-body text-xs text-muted-foreground mb-3">
+                          🎵 Коля написав для Віки пісню
+                        </p>
+                        <button
+                          onClick={toggleSong}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans tracking-wide hover:bg-accent/90 transition-colors"
+                        >
+                          {songPlaying ? (
+                            <><Pause className="w-4 h-4" /> Пауза</>
+                          ) : (
+                            <><Play className="w-4 h-4 translate-x-px" /> Послухати «Вікторія»</>
+                          )}
+                        </button>
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Answer buttons */}
+                  <div className="flex gap-3">
+                    <button
+                      className={`flex-1 py-3.5 rounded-xl border font-sans text-sm tracking-wide transition-all ${
+                        revealed === "koля"
+                          ? "border-accent bg-accent/10 text-accent"
+                          : revealed === "віка"
+                          ? "border-border bg-background text-muted-foreground opacity-50"
+                          : "border-border bg-background text-foreground hover:bg-accent/5 hover:border-accent/30"
+                      }`}
+                      onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("koля"); }}
+                      disabled={!!revealed}
+                    >
+                      👦 Коля
+                    </button>
+                    <button
+                      className={`flex-1 py-3.5 rounded-xl border font-sans text-sm tracking-wide transition-all ${
+                        revealed === "віка"
+                          ? "border-accent bg-accent/10 text-accent"
+                          : revealed === "koля"
+                          ? "border-border bg-background text-muted-foreground opacity-50"
+                          : "border-border bg-background text-foreground hover:bg-accent/5 hover:border-accent/30"
+                      }`}
+                      onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("віка"); }}
+                      disabled={!!revealed}
+                    >
+                      👧 Віка
+                    </button>
+                  </div>
+
+                  {/* Next button for song card */}
+                  {showSongPlayer && isSongCard && (
                     <motion.div
-                      key={current}
-                      className="w-full rounded-xl border border-border bg-background p-6 text-center"
-                      initial={{ opacity: 0, x: direction * 60 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -60 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="mt-3"
                     >
-                      <p className="text-xs text-muted-foreground mb-3 uppercase tracking-widest">
-                        {current + 1} / {total}
-                      </p>
-                      <p className="font-display text-lg md:text-xl text-foreground leading-snug">
-                        {cards[current].text}
-                      </p>
-
-                      {revealed && (
-                        <motion.p
-                          className="mt-4 text-sm font-medium text-accent"
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                        >
-                          Це{revealed === "віка" ? "" : ""}{" "}
-                          {revealed === "koля" ? "Коля 👦" : "Віка 👧"}!
-                        </motion.p>
-                      )}
-
-                      {/* Song player — показується тільки для спеціальної картки */}
-                      {revealed && showSongPlayer && isSongCard && (
-                        <motion.div
-                          className="mt-4 pt-4 border-t border-border"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 }}
-                        >
-                          <p className="text-xs text-muted-foreground mb-3">
-                            🎵 Коля написав для Віки пісню
-                          </p>
-                          <button
-                            onClick={toggleSong}
-                            className="mx-auto flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans tracking-wide hover:bg-accent/90 transition-colors"
-                          >
-                            {songPlaying ? (
-                              <><Pause className="w-4 h-4" /> Пауза</>
-                            ) : (
-                              <><Play className="w-4 h-4 translate-x-px" /> Послухати «Вікторія»</>
-                            )}
-                          </button>
-                        </motion.div>
-                      )}
+                      <button
+                        onClick={handleNext}
+                        className="w-full py-2.5 text-muted-foreground hover:text-foreground font-sans text-xs tracking-wider uppercase transition-colors flex items-center justify-center gap-1"
+                      >
+                        Далі <ChevronRight className="w-4 h-4" />
+                      </button>
                     </motion.div>
-                  </AnimatePresence>
-                </div>
+                  )}
 
-                {/* Answer buttons */}
-                <div key={current} className="flex gap-3 mt-6">
-                  <Button
-                    variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none active:bg-transparent ${
-                      revealed === "koля"
-                        ? "border-accent bg-accent/10 text-accent"
-                        : revealed === "віка"
-                        ? "opacity-50"
-                        : ""
-                    }`}
-                    onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("koля"); }}
-                    disabled={!!revealed}
-                  >
-                    👦 Коля
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className={`flex-1 h-14 text-base font-display gap-2 transition-all focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none active:bg-transparent ${
-                      revealed === "віка"
-                        ? "border-accent bg-accent/10 text-accent"
-                        : revealed === "koля"
-                        ? "opacity-50"
-                        : ""
-                    }`}
-                    onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleAnswer("віка"); }}
-                    disabled={!!revealed}
-                  >
-                    👧 Віка
-                  </Button>
-                </div>
-
-                {/* Кнопка "Далі" для картки з піснею */}
-                {showSongPlayer && isSongCard && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-3"
-                  >
-                    <Button
-                      onClick={handleNext}
-                      variant="ghost"
-                      className="w-full text-muted-foreground hover:text-foreground gap-1"
-                    >
-                      Далі <ChevronRight className="w-4 h-4" />
-                    </Button>
-                  </motion.div>
-                )}
-
-                {/* Score */}
-                <p className="text-center text-sm text-muted-foreground mt-4">
-                  Рахунок: {score} правильних
-                </p>
-              </>
+                  {/* Score */}
+                  <p className="text-center font-body text-sm text-muted-foreground mt-4">
+                    Рахунок: {score} правильних
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             )}
           </div>
         </motion.div>
