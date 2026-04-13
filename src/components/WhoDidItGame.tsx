@@ -165,7 +165,7 @@ const WhoDidItGame = ({ open, onClose }: Props) => {
             >
               <X className="w-4 h-4" />
             </button>
-            <Gamepad2 className="w-10 h-10 text-accent mb-3 mx-auto" strokeWidth={1.2} />
+            <Gamepad2 className="w-10 h-10 text-accent mb-3" strokeWidth={1.2} />
             <h3 className="font-display text-2xl text-foreground text-center">Хто з наречених?</h3>
             <p className="font-body text-sm text-muted-foreground mt-1 text-center">
               Вгадайте, хто це — Коля чи Віка? 🤔
