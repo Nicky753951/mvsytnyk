@@ -59,7 +59,7 @@ const HeroSection = () => {
         <h1
           className="wedding-heading text-foreground text-5xl md:text-7xl lg:text-8xl mb-4 cursor-pointer select-none"
           onClick={handleNamesClick}
-          title="Кликни 5 разів 🎉"
+          title="Клікни 5 разів 🎉"
         >
           <RevealText text="Микола" as="span" delay={0.9} />
           <span className="block font-display italic text-3xl md:text-4xl lg:text-5xl my-3 font-light opacity-80">
