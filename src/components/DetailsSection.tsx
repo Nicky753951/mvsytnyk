@@ -15,6 +15,13 @@ const program = [
 ];
 
 const DetailsSection = () => {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
   return (
     <section className="wedding-section bg-card text-center">
       <motion.div
