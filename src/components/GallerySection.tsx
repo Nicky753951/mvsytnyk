@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import SectionFlourish from "./SectionFlourish";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -26,7 +27,7 @@ const GallerySection = () => {
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Моменти щастя</p>
         <h2 className="wedding-heading text-foreground mb-4">Наші фото</h2>
-        <div className="gold-divider" />
+        <SectionFlourish />
       </motion.div>
 
       <motion.div
@@ -40,14 +41,15 @@ const GallerySection = () => {
           <CarouselContent>
             {photos.map((photo, i) => (
               <CarouselItem key={i}>
-                <div className="overflow-hidden rounded-lg">
+                <div className="overflow-hidden rounded-lg aspect-square">
                   <img
                     src={photo.src}
                     alt={photo.alt}
                     loading="lazy"
                     width={800}
                     height={1024}
-                    className="w-full aspect-square object-cover"
+                    className="w-full h-full object-cover animate-ken-burns"
+                    style={{ animationDelay: `${i * -6}s` }}
                   />
                 </div>
               </CarouselItem>
