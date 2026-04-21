@@ -1,3 +1,4 @@
+import SectionFlourish from "./SectionFlourish";
 import { motion } from "framer-motion";
 import {
   Carousel,
@@ -37,7 +38,7 @@ const BlogSection = () => {
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Моменти щастя</p>
         <h2 className="wedding-heading text-foreground mb-4">Наші спогади</h2>
-        <div className="gold-divider" />
+        <SectionFlourish />
       </motion.div>
 
       <motion.div

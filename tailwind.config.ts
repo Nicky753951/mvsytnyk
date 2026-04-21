@@ -81,11 +81,34 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "petal-fall": {
+          "0%": { transform: "translate3d(0, -10vh, 0) rotate(0deg)", opacity: "0" },
+          "10%": { opacity: "var(--petal-opacity, 0.7)" },
+          "100%": {
+            transform: "translate3d(var(--drift, 0px), 110vh, 0) rotate(var(--rotate, 360deg))",
+            opacity: "0",
+          },
+        },
+        "ken-burns": {
+          "0%": { transform: "scale(1) translate(0, 0)" },
+          "50%": { transform: "scale(1.12) translate(-1.5%, -1.5%)" },
+          "100%": { transform: "scale(1) translate(0, 0)" },
+        },
+        "confetti-burst": {
+          "0%": { transform: "translate(0, 0) rotate(0deg)", opacity: "1" },
+          "100%": {
+            transform: "translate(var(--dx, 0), calc(var(--dy, 0) + 600px)) rotate(var(--rot, 360deg))",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.8s ease-out forwards",
+        "petal-fall": "petal-fall linear infinite",
+        "ken-burns": "ken-burns 18s ease-in-out infinite",
+        "confetti-burst": "confetti-burst 1.8s cubic-bezier(0.2, 0.8, 0.4, 1) forwards",
       },
     },
   },
