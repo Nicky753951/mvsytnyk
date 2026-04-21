@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Wine, Shirt, Banknote } from "lucide-react";
+import SectionFlourish from "./SectionFlourish";
 
 const wishes = [
   {
@@ -105,7 +106,7 @@ const WishesSection = () => {
         <h2 className="wedding-heading text-primary-foreground text-4xl md:text-5xl mb-4 font-display">
           Важливі деталі
         </h2>
-        <div className="w-24 h-px bg-accent mx-auto my-8 opacity-50" />
+        <SectionFlourish className="opacity-60" />
       </motion.div>
 
       <div className="max-w-5xl mx-auto mt-12 grid grid-cols-1 sm:grid-cols-3 gap-5">
