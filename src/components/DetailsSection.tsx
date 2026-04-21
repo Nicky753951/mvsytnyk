@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
 import bzImg from "../assets/bz.webp";
 import WeatherWidget from "./WeatherWidget";
@@ -14,6 +15,13 @@ const program = [
 ];
 
 const DetailsSection = () => {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
   return (
     <section className="wedding-section bg-card text-center">
       <motion.div
@@ -35,13 +43,13 @@ const DetailsSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        {/* Image */}
-        <div className="rounded-2xl overflow-hidden bg-muted min-h-[280px] md:min-h-0">
-          <img
+        {/* Image with parallax */}
+        <div ref={imgRef} className="rounded-2xl overflow-hidden bg-muted min-h-[280px] md:min-h-0 relative">
+          <motion.img
             src={bzImg}
             alt="Софіївський Посад"
-            className="w-full h-full object-cover"
-            style={{ minHeight: "280px" }}
+            className="absolute inset-0 w-full h-[130%] object-cover"
+            style={{ y: imgY, top: "-15%" }}
           />
         </div>
 

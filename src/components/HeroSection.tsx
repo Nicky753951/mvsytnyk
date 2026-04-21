@@ -1,11 +1,21 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image with parallax */}
+      <motion.div className="absolute inset-0 scale-110" style={{ y: bgY }}>
         <img
           src={heroBg}
           alt="Весільний фон"
@@ -14,10 +24,10 @@ const HeroSection = () => {
           height={1080}
         />
         <div className="absolute inset-0 bg-background/20" />
-      </div>
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6">
+      <motion.div className="relative z-10 text-center px-6" style={{ y: contentY, opacity }}>
         <motion.h1
           className="wedding-heading text-foreground text-5xl md:text-7xl lg:text-8xl mb-4"
           initial={{ opacity: 0, y: 20 }}
@@ -52,7 +62,7 @@ const HeroSection = () => {
             Підтвердити участь
           </motion.a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
