@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
 import bzImg from "../assets/bz.webp";
 import WeatherWidget from "./WeatherWidget";
