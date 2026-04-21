@@ -62,7 +62,7 @@ const HeroSection = () => {
             Підтвердити участь
           </motion.a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
