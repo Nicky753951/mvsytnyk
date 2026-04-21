@@ -61,11 +61,14 @@ const HeroSection = () => {
           onClick={handleNamesClick}
           title="Клікни 5 разів 🎉"
         >
-          <RevealText text="Микола" as="span" delay={0.9} />
-          <span className="block font-display italic text-3xl md:text-4xl lg:text-5xl my-3 font-light opacity-80">
-            та
-          </span>
-          <RevealText text="Вікторія" as="span" delay={1.4} />
+          <RevealText text="Микола" as="span" delay={0.4} />
+          <RevealText
+            text="та"
+            as="span"
+            delay={1.1}
+            className="block font-display italic text-3xl md:text-4xl lg:text-5xl my-3 font-light opacity-80"
+          />
+          <RevealText text="Вікторія" as="span" delay={1.5} />
         </h1>
 
         <motion.div
