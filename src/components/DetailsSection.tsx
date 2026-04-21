@@ -1,3 +1,4 @@
+import SectionFlourish from "./SectionFlourish";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
@@ -32,7 +33,7 @@ const DetailsSection = () => {
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Де & коли</p>
         <h2 className="wedding-heading text-foreground mb-4">Головні координати дня</h2>
-        <div className="gold-divider" />
+        <SectionFlourish />
       </motion.div>
 
       {/* Location card */}

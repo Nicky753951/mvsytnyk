@@ -1,3 +1,4 @@
+import SectionFlourish from "./SectionFlourish";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
@@ -20,7 +21,7 @@ const StorySection = () => {
       >
         <p className="wedding-subheading text-muted-foreground mb-2">Як все почалось</p>
         <h2 className="wedding-heading text-foreground mb-4">Наша історія</h2>
-        <div className="gold-divider" />
+        <SectionFlourish />
       </motion.div>
 
       <div className="max-w-2xl mx-auto mt-12 relative mb-4">
