@@ -8,12 +8,10 @@ import WishesSection from "@/components/WishesSection";
 import FooterSection from "@/components/FooterSection";
 import ScrollToTop from "@/components/ScrollToTop";
 import GameButton from "@/components/GameButton";
-import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 const Index = () => {
   return (
     <main className="overflow-hidden">
-      <ScrollProgressBar />
       <ScrollToTop />
       <GameButton />
       <HeroSection />
