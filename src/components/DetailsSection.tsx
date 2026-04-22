@@ -1,6 +1,5 @@
 import SectionFlourish from "./SectionFlourish";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { Clock, ParkingCircle, ExternalLink } from "lucide-react";
 import bzImg from "../assets/bz.webp";
 import floralTop from "@/assets/floral-top.png";
@@ -18,12 +17,6 @@ const program = [
 ];
 
 const DetailsSection = () => {
-  const imgRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: imgRef,
-    offset: ["start end", "end start"],
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
     <section className="relative wedding-section bg-card text-center overflow-hidden"
@@ -69,13 +62,13 @@ const DetailsSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        {/* Image with parallax */}
-        <div ref={imgRef} className="rounded-2xl overflow-hidden bg-muted min-h-[280px] md:min-h-0 relative">
-          <motion.img
+        {/* Image */}
+        <div className="rounded-2xl overflow-hidden bg-muted min-h-[280px] md:min-h-0">
+          <img
             src={bzImg}
             alt="Софіївський Посад"
-            className="absolute inset-0 w-full h-[130%] object-cover"
-            style={{ y: imgY, top: "-15%" }}
+            className="w-full h-full object-cover"
+            style={{ minHeight: "280px" }}
           />
         </div>
 
