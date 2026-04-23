@@ -11,9 +11,21 @@ interface Petal {
 }
 
 const FallingPetals = ({ count = 18 }: { count?: number }) => {
+  const prefersReduced = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+  const isMobile = useMemo(
+    () => typeof window !== "undefined" && window.innerWidth < 768,
+    []
+  );
+
+  // Reduced count on mobile, disabled on prefers-reduced-motion
+  const actualCount = prefersReduced ? 0 : isMobile ? Math.min(count, 8) : count;
+
   const petals = useMemo<Petal[]>(
     () =>
-      Array.from({ length: count }).map(() => ({
+      Array.from({ length: actualCount }).map(() => ({
         left: Math.random() * 100,
         size: 10 + Math.random() * 16,
         delay: Math.random() * 12,
@@ -22,8 +34,10 @@ const FallingPetals = ({ count = 18 }: { count?: number }) => {
         rotate: Math.random() * 360,
         opacity: 0.4 + Math.random() * 0.5,
       })),
-    [count]
+    [actualCount]
   );
+
+  if (actualCount === 0) return null;
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden z-[5]">
@@ -38,8 +52,9 @@ const FallingPetals = ({ count = 18 }: { count?: number }) => {
             opacity: p.opacity,
             animationDelay: `${p.delay}s`,
             animationDuration: `${p.duration}s`,
-            ['--drift' as string]: `${p.drift}px`,
-            ['--rotate' as string]: `${p.rotate}deg`,
+            willChange: "transform",
+            ["--drift" as string]: `${p.drift}px`,
+            ["--rotate" as string]: `${p.rotate}deg`,
           }}
         >
           <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">

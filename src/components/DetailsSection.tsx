@@ -22,19 +22,17 @@ const DetailsSection = () => {
     <section className="relative wedding-section bg-card text-center overflow-hidden"
       style={{ background: "linear-gradient(160deg, hsl(40 30% 95%) 0%, hsl(350 25% 94%) 40%, hsl(38 28% 95%) 70%, hsl(40 30% 95%) 100%)" }}
     >
-      {/* Soft background orbs */}
+      {/* Static background orbs — no animation to avoid blur+repaint on mobile */}
       {[
-        { w: 340, h: 300, left: "-8%",  top: "-10%", color: "hsl(350 30% 85% / 0.28)", blur: 80, dur: 10, delay: 0 },
-        { w: 220, h: 220, left: "78%",  top: "5%",   color: "hsl(38 60% 65% / 0.12)",  blur: 60, dur: 13, delay: 2 },
-        { w: 200, h: 200, left: "10%",  top: "55%",  color: "hsl(350 30% 85% / 0.18)", blur: 55, dur: 11, delay: 1 },
-        { w: 160, h: 180, left: "68%",  top: "60%",  color: "hsl(38 60% 65% / 0.09)",  blur: 45, dur: 9,  delay: 3 },
+        { w: 340, h: 300, left: "-8%", top: "-10%", color: "hsl(350 30% 85% / 0.28)", blur: 80 },
+        { w: 220, h: 220, left: "78%", top: "5%",   color: "hsl(38 60% 65% / 0.12)",  blur: 60 },
+        { w: 200, h: 200, left: "10%", top: "55%",  color: "hsl(350 30% 85% / 0.18)", blur: 55 },
+        { w: 160, h: 180, left: "68%", top: "60%",  color: "hsl(38 60% 65% / 0.09)",  blur: 45 },
       ].map((orb, i) => (
-        <motion.div
+        <div
           key={i}
           className="absolute pointer-events-none rounded-full"
           style={{ width: orb.w, height: orb.h, left: orb.left, top: orb.top, background: orb.color, filter: `blur(${orb.blur}px)` }}
-          animate={{ scale: [1, 1.12, 0.94, 1], x: [0, 14, -8, 0], y: [0, -10, 6, 0] }}
-          transition={{ duration: orb.dur, delay: orb.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
 

@@ -4,16 +4,19 @@ import heroBg from "@/assets/hero-bg.jpg";
 import FallingPetals from "./FallingPetals";
 import RevealText from "./RevealText";
 import ConfettiBurst from "./ConfettiBurst";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  // Mobile: smaller range + no content parallax (only bg moves)
+  const bgY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "15%"] : ["0%", "35%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], isMobile ? [1, 1] : [1, 0]);
 
   const [clicks, setClicks] = useState(0);
   const [burst, setBurst] = useState(0);
@@ -37,7 +40,7 @@ const HeroSection = () => {
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image with parallax */}
-      <motion.div className="absolute inset-0 scale-110" style={{ y: bgY }}>
+      <motion.div className="absolute inset-0 scale-110 will-change-transform" style={{ y: bgY }}>
         <img
           src={heroBg}
           alt="Весільний фон"
