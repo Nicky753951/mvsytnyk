@@ -10,10 +10,12 @@ import SectionFlourish from "./SectionFlourish";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-9.jpg";
 
 const photos = [
   { src: gallery1, alt: "Наше фото 1" },
   { src: gallery2, alt: "Наше фото 2" },
+  { src: gallery3, alt: "Наше фото 3" },
 ];
 
 const GallerySection = () => {
