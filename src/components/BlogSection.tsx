@@ -16,15 +16,16 @@ import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 import gallery7 from "@/assets/gallery-7.jpg";
 import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/galler y-9.jpg";
 
 const posts = [
+   { src: gallery9, date: "09 вересня 2017", caption: "На весіллі наших кумів" },
     { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" },
    { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
   { src: gallery8, date: "06 грудня 2025", caption: "На рочку Марка - у колі найближчих друзів 🤍" },
   { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
-  { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
-  
-    
+  { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" }
+     
 ];
 
 const BlogSection = () => {
