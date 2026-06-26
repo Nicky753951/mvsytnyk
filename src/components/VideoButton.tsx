@@ -28,21 +28,38 @@ const VideoButton = () => {
       <AnimatePresence>
         {visible && !isOpen && (
           <motion.button
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.6, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ type: "spring", damping: 20 }}
+            exit={{ opacity: 0, scale: 0.6, y: 20 }}
+            transition={{ type: "spring", damping: 18, stiffness: 220 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-20 right-6 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-105 transition-all font-display text-sm"
+            aria-label="Відкрити відео-запрошення"
+            className="group fixed bottom-24 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full overflow-hidden shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.5)] hover:shadow-[0_12px_32px_-6px_hsl(var(--primary)/0.65)] transition-shadow"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%)",
+            }}
           >
-            <div className="relative">
-              <span className="absolute inset-0 rounded-full bg-white/30 animate-ping" style={{ animationDuration: "2.5s" }} />
-              <Play className="w-5 h-5 relative fill-current" />
-            </div>
-            Відео-запрошення
+            {/* Decorative pulse rings */}
+            <span className="absolute inset-0 rounded-full ring-1 ring-white/30" />
+            <span className="absolute inset-0 rounded-full bg-white/10 animate-ping" style={{ animationDuration: "2.6s" }} />
+            <span className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+            {/* Shine sweep on hover */}
+            <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+              <span className="absolute -left-1/2 top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 translate-x-0 group-hover:translate-x-[300%] transition-transform duration-700 ease-out" />
+            </span>
+
+            <Play className="relative w-5 h-5 text-primary-foreground fill-current translate-x-[1px] drop-shadow-sm" />
+
+            {/* Floating label tooltip */}
+            <span className="pointer-events-none absolute right-full mr-3 px-3 py-1.5 rounded-full bg-foreground/90 text-background text-xs font-display whitespace-nowrap opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shadow-lg">
+              Відео-запрошення
+            </span>
           </motion.button>
         )}
       </AnimatePresence>
+
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-none w-auto p-0 bg-transparent border-0 shadow-none [&>button]:hidden">
