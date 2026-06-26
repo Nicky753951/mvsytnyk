@@ -95,6 +95,7 @@ const VideoButton = () => {
                     src={videoSrc}
                     poster={weddingPoster.url}
                     controls
+                    autoPlay
                     playsInline
                     preload="auto"
                     onLoadedMetadata={() => setVideoLoaded(true)}
