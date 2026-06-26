@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
 
 const VideoButton = () => {
-  const videoSrc = "https://drive.google.com/uc?export=download&id=1X5qR9tL7kM6gG-mGJMLd_BkMXHvFc4ip";
+  const videoSrc = "https://raw.githubusercontent.com/Nicky753951/mvsytnyk/main/public/wedding-video.mp4";
   const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
