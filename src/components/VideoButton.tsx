@@ -105,7 +105,6 @@ const VideoButton = () => {
                     className="max-h-[80vh] w-auto h-auto object-contain"
                   />
                 </div>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
