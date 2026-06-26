@@ -91,7 +91,7 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex w-full min-w-0 items-center justify-center px-10 py-3 border border-foreground bg-foreground text-background transition-all duration-300 rounded-full text-sm md:text-base tracking-widest uppercase font-semibold shadow-lg hover:shadow-xl sm:w-[240px] md:w-[250px]"
+              className="inline-flex w-full min-w-0 items-center justify-center px-10 h-[50px] border border-foreground bg-foreground text-background transition-all duration-300 rounded-full text-sm tracking-widest uppercase font-semibold shadow-lg hover:shadow-xl sm:w-[240px] md:w-[250px]"
             >
               Підтвердити участь
             </motion.a>

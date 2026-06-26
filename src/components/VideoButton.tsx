@@ -42,10 +42,12 @@ const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: isInline ? 0.96 : 0.6, y: isInline ? 8 : 20 }}
             transition={{ type: "spring", damping: 18, stiffness: 220 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
             aria-label="Відкрити відео-запрошення"
             className={isInline
-              ? "group inline-flex w-full min-w-0 items-center justify-center gap-3 rounded-full border border-white/40 bg-white/85 px-10 py-3 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] sm:w-[240px] md:w-[250px]"
+              ? "group inline-flex w-full min-w-0 items-center justify-center gap-3 rounded-full border border-white/40 bg-white/85 px-10 h-[50px] text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] sm:w-[240px] md:w-[250px]"
               : "group fixed bottom-24 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full overflow-hidden shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.5)] hover:shadow-[0_12px_32px_-6px_hsl(var(--primary)/0.65)] transition-shadow"
             }
             style={isInline ? undefined : {
@@ -58,23 +60,20 @@ const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm">
                   <Play className="h-4 w-4 fill-current" />
                 </span>
-                <span className="text-[177.33px] leading-[49.6px]">Дивитись відео</span>
+                <span className="text-sm">Дивитись відео</span>
               </>
             ) : (
               <>
-                {/* Decorative pulse rings */}
                 <span className="absolute inset-0 rounded-full ring-1 ring-white/30" />
                 <span className="absolute inset-0 rounded-full bg-white/10 animate-ping" style={{ animationDuration: "2.6s" }} />
                 <span className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                {/* Shine sweep on hover */}
                 <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
                   <span className="absolute -left-1/2 top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 translate-x-0 group-hover:translate-x-[300%] transition-transform duration-700 ease-out" />
                 </span>
 
                 <Play className="relative w-5 h-5 text-primary-foreground fill-current translate-x-[1px] drop-shadow-sm" />
 
-                {/* Floating label tooltip */}
                 <span className="pointer-events-none absolute right-full mr-3 px-3 py-1.5 rounded-full bg-foreground/90 text-background text-xs font-display whitespace-nowrap opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shadow-lg">
                   Відео-запрошення
                 </span>
@@ -83,7 +82,6 @@ const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
           </motion.button>
         )}
       </AnimatePresence>
-
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-none w-auto p-0 bg-transparent border-0 shadow-none [&>button]:hidden">
