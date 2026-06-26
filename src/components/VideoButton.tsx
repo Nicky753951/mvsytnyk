@@ -92,18 +92,19 @@ const VideoButton = () => {
                   )}
                   <video
                     key={isOpen ? "open" : "closed"}
+                    src={weddingVideo.url}
                     poster={weddingPoster.url}
                     controls
                     autoPlay
+                    muted
                     playsInline
                     preload="auto"
                     onLoadedMetadata={() => setVideoLoaded(true)}
                     onCanPlay={() => setVideoLoaded(true)}
                     onError={() => setVideoLoaded(true)}
                     className="max-h-[80vh] w-auto h-auto object-contain"
-                  >
-                    <source src={weddingVideo.url} type="video/mp4" />
-                  </video>
+                  />
+                </div>
                 </div>
               </motion.div>
             )}
