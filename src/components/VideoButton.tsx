@@ -4,13 +4,23 @@ import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
 
-const VideoButton = () => {
+interface VideoButtonProps {
+  variant?: "floating" | "inline";
+}
+
+const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
   const videoSrc = "https://raw.githubusercontent.com/Nicky753951/mvsytnyk/main/public/wedding-video.mp4";
   const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const isInline = variant === "inline";
 
   useEffect(() => {
+    if (isInline) {
+      setVisible(true);
+      return;
+    }
+
     let lastY = window.scrollY;
     const handleScroll = () => {
       const y = window.scrollY;
@@ -21,41 +31,55 @@ const VideoButton = () => {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isInline]);
 
   return (
     <>
       <AnimatePresence>
-        {visible && !isOpen && (
+        {(!isOpen && (isInline || visible)) && (
           <motion.button
-            initial={{ opacity: 0, scale: 0.6, y: 20 }}
+            initial={{ opacity: 0, scale: isInline ? 0.96 : 0.6, y: isInline ? 8 : 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.6, y: 20 }}
+            exit={{ opacity: 0, scale: isInline ? 0.96 : 0.6, y: isInline ? 8 : 20 }}
             transition={{ type: "spring", damping: 18, stiffness: 220 }}
             onClick={() => setIsOpen(true)}
             aria-label="Відкрити відео-запрошення"
-            className="group fixed bottom-24 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full overflow-hidden shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.5)] hover:shadow-[0_12px_32px_-6px_hsl(var(--primary)/0.65)] transition-shadow"
-            style={{
+            className={isInline
+              ? "group inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/85 px-5 py-3 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)]"
+              : "group fixed bottom-24 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full overflow-hidden shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.5)] hover:shadow-[0_12px_32px_-6px_hsl(var(--primary)/0.65)] transition-shadow"
+            }
+            style={isInline ? undefined : {
               background:
                 "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%)",
             }}
           >
-            {/* Decorative pulse rings */}
-            <span className="absolute inset-0 rounded-full ring-1 ring-white/30" />
-            <span className="absolute inset-0 rounded-full bg-white/10 animate-ping" style={{ animationDuration: "2.6s" }} />
-            <span className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+            {isInline ? (
+              <>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm">
+                  <Play className="h-4 w-4 fill-current" />
+                </span>
+                <span>Дивитись відео</span>
+              </>
+            ) : (
+              <>
+                {/* Decorative pulse rings */}
+                <span className="absolute inset-0 rounded-full ring-1 ring-white/30" />
+                <span className="absolute inset-0 rounded-full bg-white/10 animate-ping" style={{ animationDuration: "2.6s" }} />
+                <span className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-            {/* Shine sweep on hover */}
-            <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
-              <span className="absolute -left-1/2 top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 translate-x-0 group-hover:translate-x-[300%] transition-transform duration-700 ease-out" />
-            </span>
+                {/* Shine sweep on hover */}
+                <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+                  <span className="absolute -left-1/2 top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 translate-x-0 group-hover:translate-x-[300%] transition-transform duration-700 ease-out" />
+                </span>
 
-            <Play className="relative w-5 h-5 text-primary-foreground fill-current translate-x-[1px] drop-shadow-sm" />
+                <Play className="relative w-5 h-5 text-primary-foreground fill-current translate-x-[1px] drop-shadow-sm" />
 
-            {/* Floating label tooltip */}
-            <span className="pointer-events-none absolute right-full mr-3 px-3 py-1.5 rounded-full bg-foreground/90 text-background text-xs font-display whitespace-nowrap opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shadow-lg">
-              Відео-запрошення
-            </span>
+                {/* Floating label tooltip */}
+                <span className="pointer-events-none absolute right-full mr-3 px-3 py-1.5 rounded-full bg-foreground/90 text-background text-xs font-display whitespace-nowrap opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shadow-lg">
+                  Відео-запрошення
+                </span>
+              </>
+            )}
           </motion.button>
         )}
       </AnimatePresence>

@@ -5,6 +5,7 @@ import FallingPetals from "./FallingPetals";
 import RevealText from "./RevealText";
 import ConfettiBurst from "./ConfettiBurst";
 import { useIsMobile } from "@/hooks/use-mobile";
+import VideoButton from "./VideoButton";
 
 const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -83,16 +84,19 @@ const HeroSection = () => {
             5 вересня 2026
           </p>
 
-          <motion.a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdXoBLxyQdhKxSQM3B_I_G35uNGG2QRxtOMuNm4epk75Jnh0Q/viewform?usp=dialog"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-10 py-3 border border-foreground bg-foreground text-background transition-all duration-300 rounded-full text-sm md:text-base tracking-widest uppercase font-semibold shadow-lg hover:shadow-xl"
-          >
-            Підтвердити участь
-          </motion.a>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <motion.a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdXoBLxyQdhKxSQM3B_I_G35uNGG2QRxtOMuNm4epk75Jnh0Q/viewform?usp=dialog"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-10 py-3 border border-foreground bg-foreground text-background transition-all duration-300 rounded-full text-sm md:text-base tracking-widest uppercase font-semibold shadow-lg hover:shadow-xl"
+            >
+              Підтвердити участь
+            </motion.a>
+            <VideoButton variant="inline" />
+          </div>
         </motion.div>
       </motion.div>
     </section>
