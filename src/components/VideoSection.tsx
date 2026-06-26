@@ -6,7 +6,7 @@ import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
 import SectionFlourish from "./SectionFlourish";
 
 const VideoSection = () => {
-  const videoSrc = "/wedding-video.mp4";
+  const videoSrc = "https://drive.google.com/uc?export=download&id=1X5qR9tL7kM6gG-mGJMLd_BkMXHvFc4ip";
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
