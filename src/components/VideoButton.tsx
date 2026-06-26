@@ -69,21 +69,24 @@ const VideoButton = () => {
                   style={{ maxHeight: "80vh", aspectRatio: "9/16" }}
                 >
                   {!videoLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black z-10 pointer-events-none">
                       <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     </div>
                   )}
                   <video
-                    src={weddingVideo.url}
+                    key={isOpen ? "open" : "closed"}
                     poster={weddingPoster.url}
                     controls
                     autoPlay
                     playsInline
-                    preload="metadata"
-                    onLoadedData={() => setVideoLoaded(true)}
+                    preload="auto"
+                    onLoadedMetadata={() => setVideoLoaded(true)}
+                    onCanPlay={() => setVideoLoaded(true)}
+                    onError={() => setVideoLoaded(true)}
                     className="max-h-[80vh] w-auto h-auto object-contain"
-                    style={{ display: videoLoaded ? "block" : "none" }}
-                  />
+                  >
+                    <source src={weddingVideo.url} type="video/mp4" />
+                  </video>
                 </div>
               </motion.div>
             )}
