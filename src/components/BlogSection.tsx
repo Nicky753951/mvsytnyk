@@ -27,8 +27,8 @@ import gallery16 from "@/assets/gallery-16.jpg";
 
 const posts = [
    { src: gallery9, date: "09 вересня 2017", caption: "На весіллі наших кумів 💐" },
-   { src: gallery15, date: "10 серпня 2024", caption:"Хрестини Максимки 👼" },
-   { src: gallery10, date: "31 грудня 2024", caption:"Святкування Нового року 2024 🎉" },
+   { src: gallery10, date: "10 серпня 2024", caption:"Хрестини Максимки 👼" },
+   { src: gallery12, date: "31 грудня 2024", caption:"Святкування Нового року 2024 🎉" },
    { src: gallery14, date: "26 січня 2025", caption:"Побачення на ВДНГ ✨" },
     { src: gallery15, date: "29 вересня 2025", caption:"День народження коханого 🎂" },
      { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
