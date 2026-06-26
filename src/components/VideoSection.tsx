@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, X } from "lucide-react";
 import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
-import weddingVideo from "@/assets/wedding-video.mp4.asset.json";
 import SectionFlourish from "./SectionFlourish";
 
 const VideoSection = () => {
+  const videoSrc = "/wedding-video.mp4";
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -118,7 +118,7 @@ const VideoSection = () => {
                     </div>
                   )}
                   <video
-                    src={weddingVideo.url}
+                    src={videoSrc}
                     poster={weddingPoster.url}
                     controls
                     autoPlay
