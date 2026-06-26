@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import weddingPoster from "@/assets/couple-hero.jpg";
+import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
+import weddingVideo from "@/assets/wedding-video.mp4.asset.json";
 
 const VideoButton = () => {
-  const videoSrc = `${import.meta.env.BASE_URL}wedding-video.mp4`;
   const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -92,8 +92,8 @@ const VideoButton = () => {
                   )}
                   <video
                     key={isOpen ? "open" : "closed"}
-                    src={videoSrc}
-                    poster={weddingPoster}
+                    src={weddingVideo.url}
+                    poster={weddingPoster.url}
                     controls
                     autoPlay
                     muted

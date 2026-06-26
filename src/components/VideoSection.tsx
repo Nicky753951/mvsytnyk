@@ -2,11 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, X } from "lucide-react";
-import weddingPoster from "@/assets/couple-hero.jpg";
+import weddingPoster from "@/assets/wedding-poster.jpg.asset.json";
+import weddingVideo from "@/assets/wedding-video.mp4.asset.json";
 import SectionFlourish from "./SectionFlourish";
 
 const VideoSection = () => {
-  const videoSrc = `${import.meta.env.BASE_URL}wedding-video.mp4`;
   const [isOpen, setIsOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -44,7 +44,7 @@ const VideoSection = () => {
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] border-muted/40 bg-muted">
               {/* Poster image */}
               <img
-                src={weddingPoster}
+                src={weddingPoster.url}
                 alt="Відео-запрошення"
                 className="w-full aspect-[9/16] object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -118,8 +118,8 @@ const VideoSection = () => {
                     </div>
                   )}
                   <video
-                    src={videoSrc}
-                    poster={weddingPoster}
+                    src={weddingVideo.url}
+                    poster={weddingPoster.url}
                     controls
                     autoPlay
                     playsInline
