@@ -60,7 +60,7 @@ const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm">
                   <Play className="h-4 w-4 fill-current" />
                 </span>
-                <span className="text-sm">Дивитись відео</span>
+                <span className="text-sm">Відео-запрошення</span>
               </>
             ) : (
               <>
