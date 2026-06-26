@@ -17,14 +17,26 @@ import gallery6 from "@/assets/gallery-6.jpg";
 import gallery7 from "@/assets/gallery-7.jpg";
 import gallery8 from "@/assets/gallery-8.jpg";
 import gallery9 from "@/assets/gallery-9.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
+import gallery11 from "@/assets/gallery-11.jpg";
+import gallery12 from "@/assets/gallery-12.jpg";
+import gallery13 from "@/assets/gallery-13.jpg";
+import gallery14 from "@/assets/gallery-14.jpg";
+import gallery15 from "@/assets/gallery-15.jpg";
+import gallery16 from "@/assets/gallery-16.jpg";
 
 const posts = [
    { src: gallery9, date: "09 вересня 2017", caption: "На весіллі наших кумів 💐" },
-    { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" },
-   { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
+   { src: gallery15, date: "10 серпня 2024", caption:"Хрестини Максимки 👼" },
+   { src: gallery10, date: "31 грудня 2024", caption:"Святкування Нового року 2024 🎉" },
+   { src: gallery14, date: "26 січня 2025", caption:"Побачення на ВДНГ ✨" },
+    { src: gallery15, date: "29 вересня 2025", caption:"День народження коханого 🎂" },
+     { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
+       { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
+   { src: gallery16, date: "06 грудня 2025", caption:"Пропозиція руки та серця 💍" },
   { src: gallery8, date: "06 грудня 2025", caption: "На рочку Марка - у колі найближчих друзів 🤍" },
-  { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
-  { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" }
+      { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
+    { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" },
      
 ];
 
