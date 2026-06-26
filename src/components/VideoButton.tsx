@@ -45,7 +45,7 @@ const VideoButton = ({ variant = "floating" }: VideoButtonProps) => {
             onClick={() => setIsOpen(true)}
             aria-label="Відкрити відео-запрошення"
             className={isInline
-              ? "group inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/85 px-5 py-3 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)]"
+              ? "group inline-flex min-w-[220px] items-center justify-center gap-3 rounded-full border border-white/40 bg-white/85 px-10 py-3 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] md:min-w-[240px]"
               : "group fixed bottom-24 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full overflow-hidden shadow-[0_8px_24px_-6px_hsl(var(--primary)/0.5)] hover:shadow-[0_12px_32px_-6px_hsl(var(--primary)/0.65)] transition-shadow"
             }
             style={isInline ? undefined : {
