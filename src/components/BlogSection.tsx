@@ -30,7 +30,6 @@ const posts = [
    { src: gallery10, date: "10 серпня 2024", caption:"Хрестини Максимки 👼" },
    { src: gallery12, date: "31 грудня 2024", caption:"Святкування Нового року 2024 🎉" },
    { src: gallery14, date: "26 січня 2025", caption:"Побачення на ВДНГ ✨" },
-    { src: gallery15, date: "29 вересня 2025", caption:"День народження коханого 🎂" },
      { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
        { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
    { src: gallery16, date: "06 грудня 2025", caption:"Пропозиція руки та серця 💍" },
