@@ -15,6 +15,7 @@ const Index = () => {
     <main className="overflow-hidden">
       <ScrollToTop />
       <GameButton />
+      <VideoButton />
       <HeroSection />
       <CountdownSection />
       <DetailsSection />
