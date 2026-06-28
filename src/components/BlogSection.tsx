@@ -28,15 +28,14 @@ import gallery16 from "@/assets/gallery-16.jpg";
 const posts = [
    { src: gallery9, date: "09 вересня 2017", caption: "На весіллі наших кумів 💐" },
    { src: gallery10, date: "10 серпня 2024", caption:"Хрестини Максимки 👼" },
-   { src: gallery12, date: "31 грудня 2024", caption:"Святкування Нового року 2024 🎉" },
+   { src: gallery12, date: "31 грудня 2024", caption:"Святкування Нового року 🎉" },
    { src: gallery14, date: "26 січня 2025", caption:"Побачення на ВДНГ ✨" },
-     { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
-       { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
+   { src: gallery5, date: "02 листопада 2025", caption: "Чудова прогулянка у Феофанії 🌿" },
+   { src: gallery7, date: "09 листопада 2025", caption: "На вінчанні Івана і Тетяни 🕊️" },
    { src: gallery16, date: "06 грудня 2025", caption:"Пропозиція руки та серця 💍" },
-  { src: gallery8, date: "06 грудня 2025", caption: "На рочку Марка - у колі найближчих друзів 🤍" },
-      { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
-    { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" },
-     
+   { src: gallery8, date: "06 грудня 2025", caption: "На рочку Марка - у колі найближчих друзів 🤍" },
+   { src: gallery2, date: "28 грудня 2025", caption: "З Днем народження, кохано ❤️" },
+   { src: gallery1, date: "31 грудня 2025", caption:"Перед Новим роком відвідали Ukraine WOW 🎄" }
 ];
 
 const BlogSection = () => {
