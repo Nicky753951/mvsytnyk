@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { CalendarPlus } from "lucide-react";
 
 const WEDDING_DATE = new Date("2026-09-05T14:00:00");
 
