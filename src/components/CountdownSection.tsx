@@ -96,6 +96,22 @@ const CountdownSection = () => {
 
         <WeddingCalendar />
 
+        <motion.a
+          href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N2s0MzBsZzQ4bG1xZDI1dGhmZTN0Mms1czMgcG0uc3l0bnlrQG0&tmsrc=pm.sytnyk%40gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          className="inline-flex items-center gap-3 mx-auto mt-2 px-8 py-3.5 rounded-full border border-[#b8a9a4] bg-[#fffcf9]/80 text-[#6b5e5a] font-sans text-xs tracking-[0.25em] uppercase shadow-[0_6px_20px_rgba(107,94,90,0.08)] backdrop-blur-sm transition-all duration-300 hover:bg-white hover:border-[#9e8a84] hover:text-[#4a3f3b] hover:shadow-[0_10px_28px_rgba(107,94,90,0.14)]"
+        >
+          <CalendarPlus className="w-4 h-4 text-[#9e8a84]" strokeWidth={1.5} />
+          Додати у Google Календар
+        </motion.a>
+
       </motion.div>
     </section>
   );
